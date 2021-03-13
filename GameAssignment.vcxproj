@@ -146,7 +146,6 @@
     <ClInclude Include="GraphicHandler.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="01 Basic Window.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="GraphicHandler.cpp" />
     <ClCompile Include="main.cpp" />
