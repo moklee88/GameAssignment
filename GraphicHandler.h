@@ -20,6 +20,6 @@ public:
 
 	void initialize();
 	void draw();
-	void clear();
+	void release();
 };
 

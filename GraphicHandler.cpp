@@ -58,7 +58,7 @@ void GraphicHandler::draw() {
 
 }
 
-void GraphicHandler::clear() {
+void GraphicHandler::release() {
 	d3dDevice->Release();
 	d3dDevice = NULL;
 }
