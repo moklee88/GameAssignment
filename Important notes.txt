@@ -1,0 +1,3 @@
+P.S. Game Assignment
+
+Combine every needed sprite into one image - one sprite image needed to store in variable.

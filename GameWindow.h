@@ -9,7 +9,6 @@ class GameWindow
 private:
 	static GameWindow* sInstance;
 
-
 	HINSTANCE hInstance;
 
 public:

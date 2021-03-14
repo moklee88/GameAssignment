@@ -4,27 +4,6 @@
 
 GameWindow* GameWindow::sInstance = NULL;
 
-GameWindow* GameWindow::getInstance() {
-	if (sInstance == NULL)
-		sInstance = new GameWindow;
-
-	return sInstance;
-}
-
-void GameWindow::releaseInstance() {
-	if (sInstance != NULL) {
-		delete sInstance;
-		sInstance = NULL;
-	}
-}
-
-GameWindow::GameWindow() {
-	this->hInstance = GetModuleHandle(NULL);
-	this->g_hWnd = NULL;
-	ZeroMemory(&this->wndClass, sizeof(this->wndClass));
-
-}
-
 //	Window Procedure, for event handling
 LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -51,6 +30,29 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM 
 	}
 	return 0;
 }
+
+GameWindow* GameWindow::getInstance() {
+	if (sInstance == NULL)
+		sInstance = new GameWindow;
+
+	return sInstance;
+}
+
+void GameWindow::releaseInstance() {
+	if (sInstance != NULL) {
+		delete sInstance;
+		sInstance = NULL;
+	}
+}
+
+GameWindow::GameWindow() {
+	this->hInstance = GetModuleHandle(NULL);
+	this->g_hWnd = NULL;
+	ZeroMemory(&this->wndClass, sizeof(this->wndClass));
+
+}
+
+
 int GameWindow::createWindow() {
 
 	/*

@@ -1,5 +1,5 @@
 #include "GraphicHandler.h"
-#include "Windows.h"
+#include "Sprite.h"
 
 GraphicHandler* GraphicHandler::sInstance = NULL;
 
@@ -22,6 +22,11 @@ void GraphicHandler::releaseInstance() {
 		delete sInstance;
 		sInstance = NULL;
 	}
+}
+
+IDirect3DDevice9* GraphicHandler::getD3dDevice()
+{
+	return d3dDevice;
 }
 
 void GraphicHandler::initialize() {
@@ -48,6 +53,7 @@ void GraphicHandler::draw() {
 
 	//	To Do:
 	//	Drawing.
+	Sprite::getInstance()->drawSprite();
 
 	//	End the scene
 	d3dDevice->EndScene();

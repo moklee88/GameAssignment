@@ -144,11 +144,13 @@
   <ItemGroup>
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="GraphicHandler.h" />
+    <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="GraphicHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

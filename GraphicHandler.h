@@ -18,6 +18,8 @@ public:
 	static GraphicHandler* getInstance();
 	static void releaseInstance();
 
+	IDirect3DDevice9* getD3dDevice();
+
 	void initialize();
 	void draw();
 	void release();
