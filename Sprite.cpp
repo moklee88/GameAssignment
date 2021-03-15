@@ -6,13 +6,13 @@ Sprite::Sprite()
 {
 	this->texture = NULL;
 	this->sprite = NULL;
-	//this->spriteRect = { 0,0,0,0 };
+	this->backgroundRect = { 0,208,271,367 };
 	setRenderPosition();
 	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "dummy_walking.png", &texture);
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &texture);
 
 	drawPosition.x = 32;
-	drawPosition.y = 150;
+	drawPosition.y = 200;
 	drawPosition.z = 0;
 }
 
@@ -49,12 +49,16 @@ void Sprite::drawSprite()
 	//	Clear and begin scene
 
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
-	
+
+	//background render
+	sprite->Draw(texture, &backgroundRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+
 	//	Sprite rendering. Study the documentation.
 	//sprite->Draw(texture, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
-	//sprite->Draw(texture, &spriteRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	
 	sprite->Draw(texture, &spriteRect, NULL, &drawPosition, D3DCOLOR_XRGB(255, 255, 255));
 	
+
 	//	End sprite drawing
 	sprite->End();
 

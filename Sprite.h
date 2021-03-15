@@ -9,7 +9,7 @@ private:
 	LPD3DXSPRITE sprite;
 	HRESULT hr;
 
-	RECT spriteRect;
+	RECT spriteRect,backgroundRect;
 
 public:
 	Sprite();
