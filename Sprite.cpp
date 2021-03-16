@@ -57,7 +57,7 @@ void Sprite::drawSprite()
 	//sprite->Draw(texture, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 	
 	sprite->Draw(texture, &spriteRect, NULL, &drawPosition, D3DCOLOR_XRGB(255, 255, 255));
-	
+	//sprite->Draw(texture, &spriteRect, NULL, &D3DXVECTOR3(0, 0, 0), D3DCOLOR_XRGB(255, 255, 255));
 
 	//	End sprite drawing
 	sprite->End();
