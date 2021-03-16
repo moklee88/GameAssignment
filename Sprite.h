@@ -6,10 +6,15 @@ private:
 	static Sprite* sInstance;
 
 	LPDIRECT3DTEXTURE9 texture;
+	LPDIRECT3DTEXTURE9 texture2;
+	LPDIRECT3DTEXTURE9 texture3;
+	LPDIRECT3DTEXTURE9 texture4;
+
 	LPD3DXSPRITE sprite;
+
 	HRESULT hr;
 
-	RECT spriteRect,backgroundRect;
+	RECT spriteRect, backgroundRect;
 
 public:
 	Sprite();

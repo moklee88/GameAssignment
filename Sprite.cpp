@@ -5,14 +5,23 @@ Sprite* Sprite::sInstance = NULL;
 Sprite::Sprite()
 {
 	this->texture = NULL;
-	this->sprite = NULL;
-	this->backgroundRect = { 0,208,271,367 };
-	setRenderPosition();
-	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &texture);
+	this->texture2 = NULL;
+	this->texture3 = NULL;
+	this->texture4 = NULL;
 
-	drawPosition.x = 32;
-	drawPosition.y = 200;
+	this->sprite = NULL;
+	this->backgroundRect = { 0,0,400,400 };
+	setRenderPosition();
+
+	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
+
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "backtree.png", &texture);
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "tree.png", &texture2);
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "middletree.png", &texture3);
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "light.png", &texture4);
+
+	drawPosition.x = 0;
+	drawPosition.y = 0;
 	drawPosition.z = 0;
 }
 
@@ -51,13 +60,17 @@ void Sprite::drawSprite()
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
 	//background render
+
 	sprite->Draw(texture, &backgroundRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture4, &backgroundRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture3, &backgroundRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture2, &backgroundRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 
 	//	Sprite rendering. Study the documentation.
 	//sprite->Draw(texture, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
-	
-	sprite->Draw(texture, &spriteRect, NULL, &drawPosition, D3DCOLOR_XRGB(255, 255, 255));
-	//sprite->Draw(texture, &spriteRect, NULL, &D3DXVECTOR3(0, 0, 0), D3DCOLOR_XRGB(255, 255, 255));
+
+	//sprite->Draw(texture, &spriteRect, NULL, &drawPosition, D3DCOLOR_XRGB(255, 255, 255));
+
 
 	//	End sprite drawing
 	sprite->End();
