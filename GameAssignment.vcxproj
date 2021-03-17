@@ -145,14 +145,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Character.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="GraphicHandler.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="GraphicHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Position.cpp" />
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
