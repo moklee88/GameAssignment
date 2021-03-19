@@ -1,14 +1,24 @@
 #pragma once
-#include "Position.h"
+#include <d3dx9.h>
 class Character
 {
 private:
-	Position position;
+	D3DXVECTOR2 position;
+	int speed;
+	int boundary;
 	int hp;
 
 public:
 
-	Character();
+	Character(int hp, int x, int y, int speed);
+
+	void moveleft();
+	void moveright();
+	void jump();
+
+	D3DXVECTOR2 getPosition();
+
+	bool onFloor();
 
 
 };
