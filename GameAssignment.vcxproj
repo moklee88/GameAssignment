@@ -149,7 +149,6 @@
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Ginput.h" />
     <ClInclude Include="GraphicHandler.h" />
-    <ClInclude Include="Physic.h" />
     <ClInclude Include="Sprite.h" />
   </ItemGroup>
   <ItemGroup>
@@ -158,7 +157,6 @@
     <ClCompile Include="Ginput.cpp" />
     <ClCompile Include="GraphicHandler.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Physic.cpp" />
     <ClCompile Include="Sprite.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
