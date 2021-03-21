@@ -20,9 +20,17 @@ Sprite::Sprite()
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "middletree.png", &texture3);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "light.png", &texture4);
 
-	for (int i = 0; i < 4; i++)
+
+	int x = 0;
+	for (int r = 0; r < 2; r++)
 	{
-		drawPosition[i] = { 0,0,0 };
+
+		for (int c = 0; c < 4; c++)
+		{
+			drawPosition[r][c] = { x,0,0 };
+		}
+
+		x = 1080;
 	}
 
 }
@@ -61,10 +69,12 @@ void Sprite::update()
 	{
 		isCharMove = true;
 
-		for (int i = 0; i < 4; i++)
+		for (int x = 0; x < 2; x++)
 		{
-			
-			drawPosition[i].x -= i + 1;
+			for (int y = 0; y < 4; y++)
+			{
+				drawPosition[x][y].x -= y + 1;
+			}
 		}
 	}
 }
@@ -76,11 +86,20 @@ void Sprite::drawSprite()
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
 	//background render
+	//D3DXMatrixTransformation2D(&matrix, NULL, 0.0, &scaling, NULL, 0, &characterPos);
+	//sprite->SetTransform(&matrix);
+	//for (int i = 0; i < array.size; i++)
+	
 
-	sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[0], D3DCOLOR_XRGB(255, 255, 255));
-	sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[1], D3DCOLOR_XRGB(255, 255, 255));
-	sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[2], D3DCOLOR_XRGB(255, 255, 255));
-	sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[3], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[0][0], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[0][1], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[0][2], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[0][3], D3DCOLOR_XRGB(255, 255, 255));
+
+	sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[1][0], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[1][1], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[1][2], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[1][3], D3DCOLOR_XRGB(255, 255, 255));
 
 	//	Sprite rendering. Study the documentation.
 	//sprite->Draw(texture, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
@@ -109,6 +128,6 @@ void Sprite::release()
 	texture4 = NULL;
 
 	delete drawPosition;
-	delete backgroundRect;
+
 	
 }

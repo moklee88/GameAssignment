@@ -22,7 +22,7 @@ private:
 
 public:
 	Sprite();
-	D3DXVECTOR3 drawPosition[4];
+	D3DXVECTOR3 drawPosition[2][4];
 
 	static Sprite* getInstance();
 	static void releaseInstance();

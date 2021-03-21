@@ -19,12 +19,13 @@ int main() {
 	
 	while (window->loop())
 	{
+
+
 		input->update();
 
 		Sprite::getInstance()->update();
 
 		graphic->draw();
-
 
 	}
 
