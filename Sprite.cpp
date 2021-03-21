@@ -20,9 +20,11 @@ Sprite::Sprite()
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "middletree.png", &texture3);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "light.png", &texture4);
 
-	drawPosition.x = 0;
-	drawPosition.y = 0;
-	drawPosition.z = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		drawPosition[i] = { 0,0,0 };
+	}
+
 }
 
 
@@ -53,6 +55,20 @@ void Sprite::setRenderPosition()
 }
 
 
+void Sprite::update()
+{
+	if (GInput::getInstance()->isKeyDown(DIK_RIGHT))
+	{
+		isCharMove = true;
+
+		for (int i = 0; i < 4; i++)
+		{
+			
+			drawPosition[i].x -= i + 1;
+		}
+	}
+}
+
 void Sprite::drawSprite()
 {
 	//	Clear and begin scene
@@ -61,10 +77,10 @@ void Sprite::drawSprite()
 
 	//background render
 
-	sprite->Draw(texture, &backgroundRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
-	sprite->Draw(texture4, &backgroundRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
-	sprite->Draw(texture3, &backgroundRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
-	sprite->Draw(texture2, &backgroundRect, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[0], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[1], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[2], D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[3], D3DCOLOR_XRGB(255, 255, 255));
 
 	//	Sprite rendering. Study the documentation.
 	//sprite->Draw(texture, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
@@ -84,5 +100,15 @@ void Sprite::release()
 	sprite = NULL;
 
 	texture->Release();
+	texture2->Release();
+	texture3->Release();
+	texture4->Release();
 	texture = NULL;
+	texture2 = NULL;
+	texture3 = NULL;
+	texture4 = NULL;
+
+	delete drawPosition;
+	delete backgroundRect;
+	
 }

@@ -1,5 +1,6 @@
 #include <d3dx9.h>
 #include "GraphicHandler.h"
+#include "Ginput.h"
 class Sprite
 {
 private:
@@ -16,12 +17,17 @@ private:
 
 	RECT spriteRect, backgroundRect;
 
+	bool isCharMove = true;
+
+
 public:
 	Sprite();
-	D3DXVECTOR3 drawPosition;
+	D3DXVECTOR3 drawPosition[4];
 
 	static Sprite* getInstance();
 	static void releaseInstance();
+
+	void update();
 
 	RECT getRenderPosition();
 	void setRenderPosition();

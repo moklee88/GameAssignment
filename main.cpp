@@ -21,6 +21,8 @@ int main() {
 	{
 		input->update();
 
+		Sprite::getInstance()->update();
+
 		graphic->draw();
 
 
