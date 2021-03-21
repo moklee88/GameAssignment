@@ -1,4 +1,5 @@
 #include "Sprite.h"
+#include "stdio.h"
 
 Sprite* Sprite::sInstance = NULL;
 
@@ -21,7 +22,7 @@ Sprite::Sprite()
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "light.png", &texture4);
 
 
-	int x = 0;
+	float x = 0;
 	for (int r = 0; r < 2; r++)
 	{
 
@@ -30,8 +31,9 @@ Sprite::Sprite()
 			drawPosition[r][c] = { x,0,0 };
 		}
 
-		x = 1080;
+		x = 401;
 	}
+	x= NULL;
 
 }
 
@@ -96,10 +98,10 @@ void Sprite::drawSprite()
 	sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[0][2], D3DCOLOR_XRGB(255, 255, 255));
 	sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[0][3], D3DCOLOR_XRGB(255, 255, 255));
 
-	sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[1][0], D3DCOLOR_XRGB(255, 255, 255));
-	sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[1][1], D3DCOLOR_XRGB(255, 255, 255));
-	sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[1][2], D3DCOLOR_XRGB(255, 255, 255));
-	sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[1][3], D3DCOLOR_XRGB(255, 255, 255));
+	//sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[1][0], D3DCOLOR_XRGB(255, 255, 255));
+	//sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[1][1], D3DCOLOR_XRGB(255, 255, 255));
+	//sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[1][2], D3DCOLOR_XRGB(255, 255, 255));
+	//sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[1][3], D3DCOLOR_XRGB(255, 255, 255));
 
 	//	Sprite rendering. Study the documentation.
 	//sprite->Draw(texture, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
