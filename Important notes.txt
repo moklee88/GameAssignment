@@ -3,3 +3,7 @@ P.S. Game Assignment
 Combine every needed sprite into one image - one sprite image needed to store in variable.
 
 Add particle when zombie die, circle moving outward particle
+
+position => velocity
+velocity => direction x speed
+speed = > force
