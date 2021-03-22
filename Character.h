@@ -20,6 +20,7 @@ public:
 
 	bool onFloor();
 
+	void animation();
 
 };
 

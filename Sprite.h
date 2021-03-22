@@ -11,11 +11,18 @@ private:
 	LPDIRECT3DTEXTURE9 texture3;
 	LPDIRECT3DTEXTURE9 texture4;
 
+	LPDIRECT3DTEXTURE9 player;
+
 	LPD3DXSPRITE sprite;
 
 	HRESULT hr;
 
 	RECT spriteRect, backgroundRect;
+
+	D3DXVECTOR2 characterSize;
+	D3DXVECTOR3 characterPosition;
+
+	int animationFrame;
 
 	bool isCharMove = true;
 
@@ -30,7 +37,7 @@ public:
 	void update();
 
 	RECT getRenderPosition();
-	void setRenderPosition();
+	void setRenderPosition(RECT* spriteRect);
 
 	void drawSprite();
 	void release();

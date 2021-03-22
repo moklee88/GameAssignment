@@ -83,7 +83,7 @@ int GameWindow::createWindow() {
 		Create the Window.
 	*/
 	//	You are to refer to MSDN for each of the parameters details.
-	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "My Window's Name", WS_OVERLAPPEDWINDOW, 0, 200, 400, 300, NULL, NULL, hInstance, NULL);
+	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "My Window's Name", WS_OVERLAPPEDWINDOW, 600, 300, 400, 300, NULL, NULL, hInstance, NULL);
 	ShowWindow(g_hWnd, 1);
 
 	return 0;

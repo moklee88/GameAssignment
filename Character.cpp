@@ -34,3 +34,7 @@ void Character::jump()
 
 }
 
+void Character::animation()
+{
+
+}

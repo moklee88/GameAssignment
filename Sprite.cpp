@@ -12,15 +12,26 @@ Sprite::Sprite()
 
 	this->sprite = NULL;
 	this->backgroundRect = { 0,0,400,400 };
-	setRenderPosition();
+
+
 
 	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
 
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &player);
+
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "backtree.png", &texture);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "backtree.png", &texture);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "tree.png", &texture2);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "middletree.png", &texture3);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "light.png", &texture4);
 
+	setRenderPosition(&spriteRect);
+	animationFrame = 0;
+
+	characterSize.x = 61;
+	characterSize.y = 97;
+
+	characterPosition = { 10,200,0 };
 
 	float x = 0;
 	for (int r = 0; r < 2; r++)
@@ -38,35 +49,19 @@ Sprite::Sprite()
 }
 
 
-Sprite* Sprite::getInstance() {
-	if (sInstance == NULL)
-		sInstance = new Sprite();
-
-	return sInstance;
-}
-void Sprite::releaseInstance() {
-	if (sInstance != NULL) {
-		delete sInstance;
-		sInstance = NULL;
-	}
-}
-
-RECT Sprite::getRenderPosition()
-{
-	return spriteRect;
-}
-
-void Sprite::setRenderPosition()
-{
-	this->spriteRect.left = 0;
-	this->spriteRect.top = 0;
-	this->spriteRect.right = 57;
-	this->spriteRect.bottom = 96;
-}
-
-
 void Sprite::update()
 {
+	animationFrame++;
+	animationFrame %= 4;
+
+	spriteRect.top = 0;
+	spriteRect.left = characterSize.x * animationFrame;
+	
+	spriteRect.right = spriteRect.left + characterSize.x;
+	spriteRect.bottom = spriteRect.top + characterSize.y;
+
+	//characterPosition.y += 10;
+
 	if (GInput::getInstance()->isKeyDown(DIK_RIGHT))
 	{
 		isCharMove = true;
@@ -79,6 +74,7 @@ void Sprite::update()
 			}
 		}
 	}
+	
 }
 
 void Sprite::drawSprite()
@@ -90,14 +86,15 @@ void Sprite::drawSprite()
 	//background render
 	//D3DXMatrixTransformation2D(&matrix, NULL, 0.0, &scaling, NULL, 0, &characterPos);
 	//sprite->SetTransform(&matrix);
-	//for (int i = 0; i < array.size; i++)
-	
+
+
 
 	sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[0][0], D3DCOLOR_XRGB(255, 255, 255));
 	sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[0][1], D3DCOLOR_XRGB(255, 255, 255));
 	sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[0][2], D3DCOLOR_XRGB(255, 255, 255));
 	sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[0][3], D3DCOLOR_XRGB(255, 255, 255));
 
+	sprite->Draw(player, &spriteRect, NULL, &characterPosition, D3DCOLOR_XRGB(255, 255, 255));
 	//sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[1][0], D3DCOLOR_XRGB(255, 255, 255));
 	//sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[1][1], D3DCOLOR_XRGB(255, 255, 255));
 	//sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[1][2], D3DCOLOR_XRGB(255, 255, 255));
@@ -132,4 +129,30 @@ void Sprite::release()
 	delete drawPosition;
 
 	
+}
+
+Sprite* Sprite::getInstance() {
+	if (sInstance == NULL)
+		sInstance = new Sprite();
+
+	return sInstance;
+}
+void Sprite::releaseInstance() {
+	if (sInstance != NULL) {
+		delete sInstance;
+		sInstance = NULL;
+	}
+}
+
+RECT Sprite::getRenderPosition()
+{
+	return spriteRect;
+}
+
+void Sprite::setRenderPosition(RECT *spriteRect)
+{
+	spriteRect->left = 0;
+	spriteRect->top = 0;
+	spriteRect->right = 61;
+	spriteRect->bottom = 97;
 }

@@ -3,6 +3,7 @@
 #include "GameWindow.h"
 #include "Ginput.h"
 #include "Sprite.h"
+#include "FrameTimer.h"
 #include <stdio.h>
 
 //--------------------------------------------------------------------
@@ -11,7 +12,11 @@ int main() {
 	GameWindow* window = GameWindow::getInstance();
 	GraphicHandler* graphic = GraphicHandler::getInstance();
 
+	FrameTimer* timer = new FrameTimer();
+
 	GInput* input = GInput::getInstance();
+
+	timer->init(18);
 
 	window->createWindow();
 
@@ -20,11 +25,13 @@ int main() {
 	while (window->loop())
 	{
 
-
 		input->update();
 
-		Sprite::getInstance()->update();
-
+		int frameToUpdate = timer->framesToUpdate();
+		for (int i = 0; i < frameToUpdate; i++)
+		{
+			Sprite::getInstance()->update();
+		}
 		graphic->draw();
 
 	}
@@ -36,6 +43,8 @@ int main() {
 	window->releaseInstance();
 	graphic->releaseInstance();
 	Sprite::releaseInstance();
+
+	delete timer;
 
 	return 0;
 }

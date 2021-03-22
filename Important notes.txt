@@ -7,3 +7,8 @@ Add particle when zombie die, circle moving outward particle
 position => velocity
 velocity => direction x speed
 speed = > force
+
+Game mode:-
+standard mode
+hardcode
+godmode
