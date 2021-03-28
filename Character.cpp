@@ -8,7 +8,7 @@ Character::Character(int hp, int x, int y, int speed, int height)
 	this->jumpHeight = height;
 	this->jump = false;
 	this->jumpCurrent = 0;
-	this->gravity = 10;
+	this->gravity = 20;
 
 	this->position.x = x;
 	this->position.y = y;
@@ -73,7 +73,7 @@ void Character::moveright()
 void Character::jumpUp()
 {
 	position.y -= 10;
-	jumpCurrent -= 10;
+	jumpCurrent -= 1;
 
 }
 void Character::setJump(bool current)

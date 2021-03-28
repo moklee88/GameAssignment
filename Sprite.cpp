@@ -25,7 +25,7 @@ Sprite::Sprite()
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "middletree.png", &texture3);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "light.png", &texture4);
 
-	player = new Character(3, 10, 200, 10, -50);
+	player = new Character(3, 10, 200, 10, -8);
 
 	setRenderPosition(&spriteRect);
 	animationFrame = 0;
@@ -78,23 +78,25 @@ void Sprite::update()
 		}
 	}
 
-	if (player->onFloor() || player->getJump()/* && GInput::getInstance()->isKeyDown(DIK_W) && player->getJumpCurrent() <= player->getJumpHeight()*/)
+	if (player->onFloor() || player->getJump())
 	{
-		if (GInput::getInstance()->isKeyDown(DIK_W) && player->getJumpCurrent() >= player->getJumpHeight())
+		if (GInput::getInstance()->isKeyDown(DIK_W) && player->getJumpCurrent() > player->getJumpHeight())
 		{
 			player->setJump(true);
 			player->jumpUp();
+			
 		}
 		else
 		{
 			player->setJump(false);
 			player->setJumpCurrent(0);
-			player->setGravity(0);
+			
 		}
+		player->setGravity(0);
 	}
 	else
 	{
-		player->setGravity(10);
+		player->setGravity(20);
 		player->setJump(false);
 	}
 
