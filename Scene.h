@@ -14,7 +14,7 @@ public:
 
 	Scene();
 
-	void loadScene();
+	void Scene1();
 
 
 };

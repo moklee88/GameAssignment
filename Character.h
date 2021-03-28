@@ -3,21 +3,35 @@
 class Character
 {
 private:
-	D3DXVECTOR2 position;
+
 	int speed;
 	int boundary;
 	int hp;
+	int jumpHeight,jumpCurrent;
+	int gravity;
+	bool jump;
 
 public:
-
-	Character(int hp, int x, int y, int speed);
+	D3DXVECTOR3 position;
+	Character(int hp, int x, int y, int speed, int height);
 
 	void moveleft();
 	void moveright();
-	void jump();
+	void jumpUp();
 
-	D3DXVECTOR2 getPosition();
+	D3DXVECTOR3 getPosition();
+	int getJumpHeight();
 
+	void setJump(bool current);
+	bool getJump();
+
+	void setJumpCurrent(int num);
+	int getJumpCurrent();
+
+	void setGravity(int num);
+	int getGravity();
+
+	void gravityPull();
 	bool onFloor();
 
 	void animation();

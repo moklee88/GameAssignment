@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="Character.h" />
     <ClInclude Include="FrameTimer.h" />
+    <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Ginput.h" />
     <ClInclude Include="GraphicHandler.h" />

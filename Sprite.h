@@ -1,6 +1,8 @@
 #include <d3dx9.h>
 #include "GraphicHandler.h"
 #include "Ginput.h"
+#include "Character.h"
+
 class Sprite
 {
 private:
@@ -11,7 +13,7 @@ private:
 	LPDIRECT3DTEXTURE9 texture3;
 	LPDIRECT3DTEXTURE9 texture4;
 
-	LPDIRECT3DTEXTURE9 player;
+	LPDIRECT3DTEXTURE9 resource;
 
 	LPD3DXSPRITE sprite;
 
@@ -21,6 +23,8 @@ private:
 
 	D3DXVECTOR2 characterSize;
 	D3DXVECTOR3 characterPosition;
+
+	Character* player;
 
 	int animationFrame;
 

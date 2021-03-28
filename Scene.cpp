@@ -18,5 +18,10 @@ void Scene::releaseInstance() {
 
 Scene::Scene()
 {
-	player = new Character(3, 10, 90, 2);
+	//player = new Character(3, 10, 90, 2);
+}
+
+void Scene::Scene1()
+{
+
 }
