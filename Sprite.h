@@ -14,12 +14,13 @@ private:
 	LPDIRECT3DTEXTURE9 texture4;
 
 	LPDIRECT3DTEXTURE9 resource;
+	LPDIRECT3DTEXTURE9 grenade;
 
 	LPD3DXSPRITE sprite;
 
 	HRESULT hr;
 
-	RECT spriteRect, backgroundRect;
+	RECT spriteRect, backgroundRect,grenadeRect;
 
 	D3DXVECTOR2 characterSize;
 	D3DXVECTOR3 characterPosition;

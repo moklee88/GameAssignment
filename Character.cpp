@@ -14,7 +14,7 @@ Character::Character(int hp, int x, int y, int speed, int height)
 	this->position.y = y;
 	this->position.z = 0;
 
-	this->boundary = 200;
+	this->boundary = 350;
 }
 
 
@@ -50,12 +50,12 @@ int Character::getJumpCurrent()
 
 void Character::gravityPull()
 {
-	position.y += gravity;
+	position.y += (gravity/60.0);
 }
 
 bool Character::onFloor()
 {
-	if (position.y <= boundary)
+	if (position.y < boundary)
 		return false;
 
 	return true;
@@ -72,7 +72,7 @@ void Character::moveright()
 }
 void Character::jumpUp()
 {
-	position.y -= 10;
+	position.y -= (10);
 	jumpCurrent -= 1;
 
 }

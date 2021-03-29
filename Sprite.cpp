@@ -13,11 +13,15 @@ Sprite::Sprite()
 	this->sprite = NULL;
 	this->backgroundRect = { 0,0,400,400 };
 
-
+	grenadeRect.left = 0;
+	grenadeRect.top = 0;
+	grenadeRect.right = 23;
+	grenadeRect.bottom = 28;
 
 	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
 
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "grenade.png", &grenade);
 
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "backtree.png", &texture);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "backtree.png", &texture);
@@ -80,6 +84,7 @@ void Sprite::update()
 
 	if (player->onFloor() || player->getJump())
 	{
+		player->setGravity(0);
 		if (GInput::getInstance()->isKeyDown(DIK_W) && player->getJumpCurrent() > player->getJumpHeight())
 		{
 			player->setJump(true);
@@ -92,12 +97,10 @@ void Sprite::update()
 			player->setJumpCurrent(0);
 			
 		}
-		player->setGravity(0);
 	}
 	else
 	{
-		player->setGravity(20);
-		player->setJump(false);
+		player->setGravity(900);
 	}
 
 
@@ -132,6 +135,8 @@ void Sprite::drawSprite()
 	//sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[0][3], D3DCOLOR_XRGB(255, 255, 255));
 
 	sprite->Draw(resource, &spriteRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(grenade, &grenadeRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
+
 	//sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[1][0], D3DCOLOR_XRGB(255, 255, 255));
 	//sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[1][1], D3DCOLOR_XRGB(255, 255, 255));
 	//sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[1][2], D3DCOLOR_XRGB(255, 255, 255));
