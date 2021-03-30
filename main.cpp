@@ -2,6 +2,7 @@
 #define WIN32_LEAN_AND_MEAN 
 #include "GameWindow.h"
 #include "Ginput.h"
+#include "Background.h"
 #include "Sprite.h"
 #include "FrameTimer.h"
 #include <stdio.h>
@@ -30,7 +31,8 @@ int main() {
 		int frameToUpdate = timer->framesToUpdate();
 		for (int i = 0; i < frameToUpdate; i++)
 		{
-			Sprite::getInstance()->update();
+			//Sprite::getInstance()->update();
+			Background::getInstance()->update();
 		}
 		graphic->draw();
 
@@ -43,6 +45,8 @@ int main() {
 	window->releaseInstance();
 	graphic->releaseInstance();
 	Sprite::releaseInstance();
+	Background::releaseInstance();
+	
 
 	delete timer;
 
