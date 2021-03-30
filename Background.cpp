@@ -11,7 +11,7 @@ Background::Background()
 	this->texture4 = NULL;
 
 	this->background = NULL;
-	this->backgroundRect = { 0,0,400,400 };
+	this->backgroundRect = { 0,0,400,250 };
 
 
 
@@ -46,7 +46,7 @@ Background::Background()
 
 void Background::update()
 {
-	if (GInput::getInstance()->isKeyDown(DIK_RIGHT))
+	if (GInput::getInstance()->isKeyDown(DIK_D))
 	{
 		isCharMove = true;
 
