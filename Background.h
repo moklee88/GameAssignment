@@ -17,7 +17,7 @@ private:
 
 	HRESULT hr;
 
-	RECT spriteRect, backgroundRect;
+	RECT spriteRect, backgroundRect, backgroundRect2;
 
 	LPDIRECT3DTEXTURE9 resource;
 	int animationFrame;
