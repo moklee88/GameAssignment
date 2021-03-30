@@ -29,7 +29,7 @@ Background::Background()
 	animationFrame = 0;
 
 
-	float x = 0, y=150;
+	float x = 0, y=100;
 	for (int r = 0; r < 2; r++)
 	{
 
