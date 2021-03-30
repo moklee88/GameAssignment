@@ -5,14 +5,6 @@ Sprite* Sprite::sInstance = NULL;
 
 Sprite::Sprite()
 {
-	this->texture = NULL;
-	this->texture2 = NULL;
-	this->texture3 = NULL;
-	this->texture4 = NULL;
-
-	this->sprite = NULL;
-	this->backgroundRect = { 10,150,0 };
-
 	grenadeRect.left = 0;
 	grenadeRect.top = 0;
 	grenadeRect.right = 23;
@@ -23,12 +15,6 @@ Sprite::Sprite()
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "grenade.png", &grenade);
 
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "backtree.png", &texture);
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "backtree.png", &texture);
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "tree.png", &texture2);
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "middletree.png", &texture3);
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "light.png", &texture4);
-
 	player = new Character(3, 10, 200, 10, -8);
 
 	setRenderPosition(&spriteRect);
@@ -38,20 +24,6 @@ Sprite::Sprite()
 	characterSize.y = 97;
 
 	characterPosition = { 10,150,0 };
-
-	float x = 0;
-	for (int r = 0; r < 2; r++)
-	{
-
-		for (int c = 0; c < 4; c++)
-		{
-			drawPosition[r][c] = { x,0,0 };
-		}
-
-		x = 401;
-	}
-	x= NULL;
-
 }
 
 
@@ -66,20 +38,6 @@ void Sprite::update()
 	
 	spriteRect.right = spriteRect.left + characterSize.x;
 	spriteRect.bottom = spriteRect.top + characterSize.y;
-
-
-	if (GInput::getInstance()->isKeyDown(DIK_RIGHT))
-	{
-		isCharMove = true;
-
-		for (int x = 0; x < 2; x++)
-		{
-			for (int y = 0; y < 4; y++)
-			{
-				drawPosition[x][y].x -= y + 1;
-			}
-		}
-	}
 
 	if (player->onFloor() || player->getJump())
 	{
@@ -128,13 +86,6 @@ void Sprite::drawSprite()
 
 
 	//sprite->Draw(grenade, &grenadeRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
-
-	//sprite->Draw(texture, &backgroundRect, NULL, &drawPosition[1][0], D3DCOLOR_XRGB(255, 255, 255));
-	//sprite->Draw(texture4, &backgroundRect, NULL, &drawPosition[1][1], D3DCOLOR_XRGB(255, 255, 255));
-	//sprite->Draw(texture3, &backgroundRect, NULL, &drawPosition[1][2], D3DCOLOR_XRGB(255, 255, 255));
-	//sprite->Draw(texture2, &backgroundRect, NULL, &drawPosition[1][3], D3DCOLOR_XRGB(255, 255, 255));
-
-
 	sprite->Draw(resource, &spriteRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
 	//	Sprite rendering. Study the documentation.
 	//sprite->Draw(texture, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
@@ -152,19 +103,9 @@ void Sprite::drawSprite()
 
 void Sprite::release()
 {
-	sprite->Release();
-	sprite = NULL;
 
-	texture->Release();
-	texture2->Release();
-	texture3->Release();
-	texture4->Release();
 	resource->Release();
-	resource = NULL;
-	texture = NULL;
-	texture2 = NULL;
-	texture3 = NULL;
-	texture4 = NULL;
+	resource = NULL;;
 
 	delete player;
 	delete drawPosition;
