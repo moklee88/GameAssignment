@@ -47,20 +47,13 @@ Background::Background()
 void Background::update()
 {
 
-	if (GInput::getInstance()->isKeyDown(DIK_RIGHT))
+	for (int x = 0; x < 2; x++)
 	{
-		isCharMove = true;
-
-		for (int x = 0; x < 2; x++)
+		for (int y = 0; y < 4; y++)
 		{
-			for (int y = 0; y < 4; y++)
-			{
-				drawPosition[x][y].x -= y + 1;
-			}
+			drawPosition[x][y].x -= y + 1;
 		}
 	}
-
-
 }
 
 void Background::drawSprite()
