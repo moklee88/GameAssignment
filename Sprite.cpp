@@ -59,7 +59,7 @@ void Sprite::update()
 {
 
 	animationFrame++;
-	animationFrame %= 4;
+	animationFrame %= 9;
 
 	spriteRect.top = 0;
 	spriteRect.left = characterSize.x * animationFrame;
@@ -67,7 +67,6 @@ void Sprite::update()
 	spriteRect.right = spriteRect.left + characterSize.x;
 	spriteRect.bottom = spriteRect.top + characterSize.y;
 
-	//characterPosition.y += 10;
 
 	if (GInput::getInstance()->isKeyDown(DIK_RIGHT))
 	{
