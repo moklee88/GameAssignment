@@ -36,7 +36,7 @@ void GraphicHandler::initialize() {
 	d3dPP.BackBufferFormat = D3DFMT_X8R8G8B8;
 	d3dPP.BackBufferCount = 1;
 	d3dPP.BackBufferWidth = 550;
-	d3dPP.BackBufferHeight = 450;
+	d3dPP.BackBufferHeight = 550;
 	d3dPP.hDeviceWindow = GameWindow::getInstance()->g_hWnd;
 
 	this->hr = direct3D9->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, GameWindow::getInstance()->g_hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dPP, &d3dDevice);
