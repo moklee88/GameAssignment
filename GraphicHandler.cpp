@@ -54,8 +54,9 @@ void GraphicHandler::draw() {
 
 	//	To Do:
 	//	Drawing.
+
+	Background::getInstance()->drawSprite();
 	Sprite::getInstance()->drawSprite();
-	//Background::getInstance()->drawSprite();
 
 	//	End the scene
 	d3dDevice->EndScene();

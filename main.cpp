@@ -31,8 +31,9 @@ int main() {
 		int frameToUpdate = timer->framesToUpdate();
 		for (int i = 0; i < frameToUpdate; i++)
 		{
+		
+			Background::getInstance()->update();
 			Sprite::getInstance()->update();
-			//Background::getInstance()->update();
 		}
 		graphic->draw();
 
