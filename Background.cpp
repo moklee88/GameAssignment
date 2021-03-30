@@ -11,7 +11,7 @@ Background::Background()
 	this->texture4 = NULL;
 
 	this->background = NULL;
-	this->backgroundRect = { 10,150,0 };
+	this->backgroundRect = { 0,0,400,400 };
 
 
 
