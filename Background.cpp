@@ -46,12 +46,16 @@ Background::Background()
 
 void Background::update()
 {
-
-	for (int x = 0; x < 2; x++)
+	if (GInput::getInstance()->isKeyDown(DIK_RIGHT))
 	{
-		for (int y = 0; y < 4; y++)
+		isCharMove = true;
+
+		for (int x = 0; x < 2; x++)
 		{
-			drawPosition[x][y].x -= y + 1;
+			for (int y = 0; y < 4; y++)
+			{
+				drawPosition[x][y].x -= y + 1;
+			}
 		}
 	}
 }

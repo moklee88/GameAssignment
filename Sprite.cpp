@@ -5,6 +5,7 @@ Sprite* Sprite::sInstance = NULL;
 
 Sprite::Sprite()
 {
+
 	grenadeRect.left = 0;
 	grenadeRect.top = 0;
 	grenadeRect.right = 23;
@@ -15,6 +16,7 @@ Sprite::Sprite()
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "grenade.png", &grenade);
 
+
 	player = new Character(3, 10, 200, 10, -8);
 
 	setRenderPosition(&spriteRect);
@@ -24,6 +26,7 @@ Sprite::Sprite()
 	characterSize.y = 97;
 
 	characterPosition = { 10,150,0 };
+
 }
 
 
@@ -103,9 +106,12 @@ void Sprite::drawSprite()
 
 void Sprite::release()
 {
+	sprite->Release();
+	sprite = NULL;
 
 	resource->Release();
-	resource = NULL;;
+	resource = NULL;
+
 
 	delete player;
 	delete drawPosition;
