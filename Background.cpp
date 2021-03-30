@@ -12,6 +12,7 @@ Background::Background()
 
 	this->background = NULL;
 	this->backgroundRect = { 0,0,400,250 };
+	this->backgroundRect2 = { 0,0,500,250 };
 
 
 
@@ -46,7 +47,18 @@ Background::Background()
 
 void Background::update()
 {
-	if (GInput::getInstance()->isKeyDown(DIK_D))
+
+	isCharMove = true;
+
+	for (int x = 0; x < 2; x++)
+	{
+		for (int y = 0; y < 4; y++)
+		{
+			drawPosition[x][y].x -= y + 1;
+		}
+	}
+
+	/*if (GInput::getInstance()->isKeyDown(DIK_D))
 	{
 		isCharMove = true;
 
@@ -57,7 +69,7 @@ void Background::update()
 				drawPosition[x][y].x -= y + 1;
 			}
 		}
-	}
+	}*/
 }
 
 void Background::drawSprite()
@@ -80,7 +92,7 @@ void Background::drawSprite()
 
 	//sprite->Draw(grenade, &grenadeRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
 
-	background->Draw(texture, &backgroundRect, NULL, &drawPosition[1][0], D3DCOLOR_XRGB(255, 255, 255));
+	background->Draw(texture, &backgroundRect2, NULL, &drawPosition[1][0], D3DCOLOR_XRGB(255, 255, 255));
 	background->Draw(texture4, &backgroundRect, NULL, &drawPosition[1][1], D3DCOLOR_XRGB(255, 255, 255));
 	background->Draw(texture3, &backgroundRect, NULL, &drawPosition[1][2], D3DCOLOR_XRGB(255, 255, 255));
 	background->Draw(texture2, &backgroundRect, NULL, &drawPosition[1][3], D3DCOLOR_XRGB(255, 255, 255));
