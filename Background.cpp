@@ -28,18 +28,19 @@ Background::Background()
 	animationFrame = 0;
 
 
-	float x = 0;
+	float x = 0, y=100;
 	for (int r = 0; r < 2; r++)
 	{
 
 		for (int c = 0; c < 4; c++)
 		{
-			drawPosition[r][c] = { x,0,0 };
+			drawPosition[r][c] = { x,y,0 };
 		}
 
 		x = 401;
 	}
 	x = NULL;
+	y = NULL;
 
 }
 
