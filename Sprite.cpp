@@ -20,17 +20,14 @@ Sprite::Sprite()
 	setRenderPosition(&spriteRect);
 	animationFrame = 0;
 
-	characterSize.x = 61;
+	characterSize.x = 62;
 	characterSize.y = 97;
-
-	characterPosition = { 10,150,0 };
 
 }
 
 
 void Sprite::update()
 {
-
 	animationFrame++;
 	animationFrame %= 9;
 
@@ -39,8 +36,6 @@ void Sprite::update()
 	
 	spriteRect.right = spriteRect.left + characterSize.x;
 	spriteRect.bottom = spriteRect.top + characterSize.y;
-
-
 
 }
 
@@ -79,8 +74,6 @@ void Sprite::release()
 	resource->Release();
 	resource = NULL;
 
-	delete drawPosition;
-	
 }
 
 Sprite* Sprite::getInstance() {

@@ -5,6 +5,7 @@ Character::Character(int hp, int x, int y, int height)
 	this->hp = hp;
 
 	this->speed = { 0,0,0 };
+	this->force = 200;
 
 	this->position.x = x;
 	this->position.y = y;
@@ -12,9 +13,6 @@ Character::Character(int hp, int x, int y, int height)
 
 	this->boundary = 350;
 }
-
-
-
 
 D3DXVECTOR3 Character::getPosition()
 {
@@ -30,12 +28,15 @@ void Character::physic()
 		position += (speed / 60.0);
 	}
 	else
+	{
+		speed.y = 0;
 		position.y = 300;
+	}
 }
 
 void Character::jump()
 {
-	speed.y = -200;
+	speed.y = -force;
 }
 
 void Character::moveleft()

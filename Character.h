@@ -6,6 +6,7 @@ private:
 
 	int boundary;
 	int hp;
+	int force;
 
 
 public:

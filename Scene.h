@@ -19,7 +19,7 @@ public:
 
 	void fixedUpdate();
 	void Scene1();
-
+	void dead();
 
 };
 
