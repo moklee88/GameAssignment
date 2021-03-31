@@ -16,12 +16,37 @@ void Scene::releaseInstance() {
 	}
 }
 
+Character* Scene::getPlayer()
+{
+	return player;
+}
+
+
 Scene::Scene()
 {
-	//player = new Character(3, 10, 90, 2);
+	player = new Character(3, 10, 200,-8);
+}
+
+void Scene::fixedUpdate()
+{
+	player->physic();
 }
 
 void Scene::Scene1()
 {
 
+	if (GInput::getInstance()->isKeyDown(DIK_W))
+	{
+		player->jump();
+
+	}
+
+	if (GInput::getInstance()->isKeyDown(DIK_A))
+	{
+		player->moveright();
+	}
+	if (GInput::getInstance()->isKeyDown(DIK_D))
+	{
+		player->moveleft();
+	}
 }

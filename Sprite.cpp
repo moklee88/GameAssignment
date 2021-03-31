@@ -17,8 +17,6 @@ Sprite::Sprite()
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "grenade.png", &grenade);
 
 
-	player = new Character(3, 10, 200, 10, -8);
-
 	setRenderPosition(&spriteRect);
 	animationFrame = 0;
 
@@ -42,42 +40,11 @@ void Sprite::update()
 	spriteRect.right = spriteRect.left + characterSize.x;
 	spriteRect.bottom = spriteRect.top + characterSize.y;
 
-	if (player->onFloor() || player->getJump())
-	{
-		player->setGravity(0);
-		if (GInput::getInstance()->isKeyDown(DIK_W) && player->getJumpCurrent() > player->getJumpHeight())
-		{
-			player->setJump(true);
-			player->jumpUp();
-			
-		}
-		else
-		{
-			player->setJump(false);
-			player->setJumpCurrent(0);
-			
-		}
-	}
-	else
-	{
-		player->setGravity(900);
-	}
 
-
-	player->gravityPull();
-
-	if (GInput::getInstance()->isKeyDown(DIK_A))
-	{
-		player->moveright();
-	}
-	if (GInput::getInstance()->isKeyDown(DIK_D))
-	{
-		player->moveleft();
-	}
 
 }
 
-void Sprite::drawSprite()
+void Sprite::drawSprite(Character* player)
 {
 	//	Clear and begin scene
 
@@ -112,10 +79,7 @@ void Sprite::release()
 	resource->Release();
 	resource = NULL;
 
-
-	delete player;
 	delete drawPosition;
-
 	
 }
 

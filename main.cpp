@@ -5,6 +5,7 @@
 #include "Background.h"
 #include "Sprite.h"
 #include "FrameTimer.h"
+#include "Scene.h"
 #include <stdio.h>
 
 //--------------------------------------------------------------------
@@ -27,6 +28,8 @@ int main() {
 	{
 
 		input->update();
+		Scene::getInstance()->fixedUpdate();
+		Scene::getInstance()->Scene1();
 
 		int frameToUpdate = timer->framesToUpdate();
 		for (int i = 0; i < frameToUpdate; i++)

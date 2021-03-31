@@ -25,8 +25,6 @@ private:
 	D3DXVECTOR2 characterSize;
 	D3DXVECTOR3 characterPosition;
 
-	Character* player;
-
 	int animationFrame;
 
 	bool isCharMove = true;
@@ -44,7 +42,7 @@ public:
 	RECT getRenderPosition();
 	void setRenderPosition(RECT* spriteRect);
 
-	void drawSprite();
+	void drawSprite(Character* player);
 	void release();
 
 };
