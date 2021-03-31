@@ -27,7 +27,7 @@ private:
 
 public:
 	Background();	
-	D3DXVECTOR3 drawPosition[2][4];
+	D3DXVECTOR3 drawPosition[2][5];
 
 	static Background* getInstance();
 	static void releaseInstance();

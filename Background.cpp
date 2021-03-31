@@ -38,7 +38,7 @@ Background::Background()
 			drawPosition[r][c] = { x,y,0 };
 		}
 
-		x = 401;
+		x = 0;
 	}
 	x = NULL;
 	y = NULL;
@@ -55,7 +55,7 @@ void Background::update()
 	{
 		for (int y = 0; y < 4; y++)
 		{
-			drawPosition[x][y].x -= y + 1;
+			drawPosition[x][y].x -= y + 0.5;
 		}
 	}
 
