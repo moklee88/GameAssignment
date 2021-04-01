@@ -45,8 +45,10 @@ void Scene::Scene1()
 	{
 		player->moveright();
 	}
-	if (GInput::getInstance()->isKeyDown(DIK_D))
+	else if (GInput::getInstance()->isKeyDown(DIK_D))
 	{
 		player->moveleft();
 	}
+	else
+		player->stationary();
 }

@@ -15,6 +15,7 @@ public:
 
 
 	void physic();
+	void stationary();
 
 	void moveleft();
 	void moveright();

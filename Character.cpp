@@ -32,6 +32,13 @@ void Character::physic()
 		speed.y = 0;
 		position.y = 300;
 	}
+
+
+}
+
+void Character::stationary()
+{
+	speed.x = 0;
 }
 
 void Character::jump()
@@ -41,11 +48,11 @@ void Character::jump()
 
 void Character::moveleft()
 {
-	speed.x++;
+	speed.x = force;
 }
 void Character::moveright()
 {
-	speed.x--;
+	speed.x = -force;
 }
 
 
