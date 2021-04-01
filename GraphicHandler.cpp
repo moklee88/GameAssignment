@@ -1,6 +1,7 @@
 #include "GraphicHandler.h"
 #include "Sprite.h"
 #include "Scene.h"
+#include "HealthBar.h"
 #include "Background.h"
 
 GraphicHandler* GraphicHandler::sInstance = NULL;
@@ -56,8 +57,10 @@ void GraphicHandler::draw() {
 	//	To Do:
 	//	Drawing.
 
+	HealthBar::getInstance()->drawSprite();
 	Background::getInstance()->drawSprite();
 	Sprite::getInstance()->drawSprite(Scene::getInstance()->getPlayer());
+
 
 	//	End the scene
 	d3dDevice->EndScene();

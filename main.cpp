@@ -4,6 +4,7 @@
 #include "Ginput.h"
 #include "Background.h"
 #include "Sprite.h"
+#include "HealthBar.h"
 #include "FrameTimer.h"
 #include "Scene.h"
 #include <stdio.h>
@@ -37,6 +38,7 @@ int main() {
 		
 			Background::getInstance()->update();
 			Sprite::getInstance()->update();
+		
 		}
 		graphic->draw();
 
@@ -50,6 +52,7 @@ int main() {
 	graphic->releaseInstance();
 	Sprite::releaseInstance();
 	Background::releaseInstance();
+	HealthBar::releaseInstance();
 	
 
 	delete timer;

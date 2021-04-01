@@ -152,6 +152,7 @@
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Ginput.h" />
     <ClInclude Include="GraphicHandler.h" />
+    <ClInclude Include="HealthBar.h" />
     <ClInclude Include="Reference\Spawner.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -165,6 +166,7 @@
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Ginput.cpp" />
     <ClCompile Include="GraphicHandler.cpp" />
+    <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Reference\Spawner.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
