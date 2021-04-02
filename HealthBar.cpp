@@ -8,13 +8,13 @@ HealthBar::HealthBar()
 	this->texture = NULL;
 
 	this->healthbar = NULL;
-	this->backgroundRect = { 0,0,30,30 };
+	this->backgroundRect = { 0,0,70,34};
 
 
 
 	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &healthbar);
 
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "HealthBar.jpg", &texture);
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "HealthBar2.jpg", &texture);
 
 
 
