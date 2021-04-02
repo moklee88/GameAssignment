@@ -35,6 +35,7 @@ void Scene::fixedUpdate()
 void Scene::Scene1()
 {
 
+	
 	if (GInput::getInstance()->isKeyDown(DIK_W))
 	{
 		player->jump();

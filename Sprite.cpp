@@ -45,17 +45,9 @@ void Sprite::drawSprite(Character* player)
 
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
-	//background render
-	//D3DXMatrixTransformation2D(&matrix, NULL, 0.0, &scaling, NULL, 0, &characterPos);
-	//sprite->SetTransform(&matrix);
-
-
-	//sprite->Draw(grenade, &grenadeRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
 	sprite->Draw(resource, &spriteRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
-	//	Sprite rendering. Study the documentation.
-	//sprite->Draw(texture, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
 
-	//sprite->Draw(texture, &spriteRect, NULL, &drawPosition, D3DCOLOR_XRGB(255, 255, 255));
+
 
 
 	//	End sprite drawing

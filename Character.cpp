@@ -5,7 +5,7 @@ Character::Character(int hp, int x, int y, int height)
 	this->hp = hp;
 
 	this->speed = { 0,0,0 };
-	this->force = 200;
+	this->force = 180;
 
 	this->position.x = x;
 	this->position.y = y;

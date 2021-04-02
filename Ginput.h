@@ -15,9 +15,11 @@ private:
     HRESULT result;
     
     static GInput* sInstance;
+
+public:
     GInput();
     ~GInput();
-public:
+
     static GInput* getInstance();
     static void releaseInstance();
     void update();

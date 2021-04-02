@@ -2,7 +2,9 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include "GraphicHandler.h"
+#include "GInput.h"
 #include<d3d9.h>
+
 
 class GameWindow
 {
@@ -15,7 +17,7 @@ public:
 	WNDCLASS wndClass;
 	HWND g_hWnd;
 
-	static int mouseX, mouseY;
+	int mouseX, mouseY;
 
 	GameWindow();
 
