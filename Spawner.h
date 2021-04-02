@@ -3,7 +3,8 @@
 
 #include <stdio.h>
 #include <vector>
-#include "Character.h"
+
+#include "../Enemy/Character.h"
 
 #define MAX_ENEMY_ONEWAVE	50
 #define MAX_WAVE			10
