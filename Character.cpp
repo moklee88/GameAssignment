@@ -33,7 +33,6 @@ void Character::physic()
 		position.y = 300;
 	}
 
-
 }
 
 void Character::stationary()
@@ -55,6 +54,11 @@ void Character::moveright()
 	speed.x = -force;
 }
 
+
+void Character::death()
+{
+
+}
 
 void Character::animation()
 {

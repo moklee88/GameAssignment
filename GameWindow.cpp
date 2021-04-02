@@ -20,6 +20,9 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM 
 		}
 		printf("%d\n", wParam);
 		break;
+	case WM_MOUSEMOVE:
+		GameWindow::getInstance()->mouseX = LOWORD(lParam) * 512 / 1024;
+		GameWindow::getInstance()->mouseY = HIWORD(lParam);
 
 		//case VK_ESCAPE:
 		//	return(0);

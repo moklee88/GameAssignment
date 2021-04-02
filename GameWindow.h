@@ -15,6 +15,8 @@ public:
 	WNDCLASS wndClass;
 	HWND g_hWnd;
 
+	static int mouseX, mouseY;
+
 	GameWindow();
 
 	static GameWindow* getInstance();

@@ -6,13 +6,14 @@ private:
 
 	int boundary;
 	int hp;
-	int force;
+	float force;
 
 
 public:
 	D3DXVECTOR3 position,speed;
-	Character(int hp, int x, int y, int height);
 
+	Character(int hp, int x, int y, int height);
+	D3DXVECTOR3 getPosition();
 
 	void physic();
 	void stationary();
@@ -21,8 +22,7 @@ public:
 	void moveright();
 	void jump();
 
-	D3DXVECTOR3 getPosition();
-
+	void death();
 
 	void animation();
 
