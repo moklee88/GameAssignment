@@ -13,6 +13,7 @@ public:
 	D3DXVECTOR3 position,speed;
 
 	Character(int hp, int x, int y, int height);
+	Character();
 	D3DXVECTOR3 getPosition();
 
 	void physic();

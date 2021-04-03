@@ -34,9 +34,7 @@ void Scene::fixedUpdate()
 
 void Scene::Scene1()
 {
-
-	
-	if (GInput::getInstance()->isKeyDown(DIK_W))
+	if (GInput::getInstance()->isKeyDown(DIK_W) && player->getPosition().y >= 300)
 	{
 		player->jump();
 

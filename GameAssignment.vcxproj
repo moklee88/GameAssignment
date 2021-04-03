@@ -147,6 +147,9 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="EnemyController.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameWindow.h" />
@@ -164,6 +167,9 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="EnemyController.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Ginput.cpp" />

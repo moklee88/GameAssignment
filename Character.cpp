@@ -5,13 +5,27 @@ Character::Character(int hp, int x, int y, int height)
 	this->hp = hp;
 
 	this->speed = { 0,0,0 };
-	this->force = 180;
+	this->force = 200;
 
 	this->position.x = x;
 	this->position.y = y;
 	this->position.z = 0;
 
 	this->boundary = 350;
+}
+
+Character::Character()
+{
+	this->force = 200;
+	this->hp = 1;
+	this->speed = { force,0,0 };
+
+	this->position.x = 580;
+	this->position.y = 200;
+	this->position.z = 0;
+
+	this->boundary = 350;
+
 }
 
 D3DXVECTOR3 Character::getPosition()
@@ -32,7 +46,6 @@ void Character::physic()
 		speed.y = 0;
 		position.y = 300;
 	}
-
 }
 
 void Character::stationary()
