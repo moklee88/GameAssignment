@@ -10,7 +10,7 @@ class EnemyController
 private:
 	static EnemyController* sInstance;
 
-	EnemyController(std::vector<Character*> *spawnList);
+	EnemyController(std::vector<Character*> &spawnList);
 	~EnemyController();
 
 public:

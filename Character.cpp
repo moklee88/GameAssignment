@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character(int hp, int x, int y, int height)
+Character::Character(int hp, int x, int y, int height, float sizeX, float sizeY)
 {
 	this->hp = hp;
 
@@ -11,6 +11,9 @@ Character::Character(int hp, int x, int y, int height)
 	this->position.y = y;
 	this->position.z = 0;
 
+	this->size.x = sizeX;
+	this->size.y = sizeY;
+
 	this->boundary = 350;
 }
 
@@ -18,19 +21,14 @@ Character::Character()
 {
 	this->force = 200;
 	this->hp = 1;
-	this->speed = { force,0,0 };
+	this->speed = { -force,0,0 };
 
 	this->position.x = 580;
-	this->position.y = 200;
+	this->position.y = 100;
 	this->position.z = 0;
 
 	this->boundary = 350;
 
-}
-
-D3DXVECTOR3 Character::getPosition()
-{
-	return position;
 }
 
 
@@ -58,15 +56,19 @@ void Character::jump()
 	speed.y = -force;
 }
 
-void Character::moveleft()
+void Character::moveright()
 {
 	speed.x = force;
 }
-void Character::moveright()
+void Character::moveleft()
 {
 	speed.x = -force;
 }
 
+void Character::lostHp()
+{
+	hp--;
+}
 
 void Character::death()
 {

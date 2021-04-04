@@ -2,6 +2,7 @@
 #include "GraphicHandler.h"
 #include "Ginput.h"
 #include "Character.h"
+#include "Scene.h"
 
 class Sprite
 {
@@ -15,9 +16,9 @@ private:
 
 	HRESULT hr;
 
-	RECT spriteRect, backgroundRect,grenadeRect;
+	RECT playerRect, backgroundRect,grenadeRect,enemyRect;
 
-	D3DXVECTOR2 characterSize;
+	D3DXVECTOR2 playerSize;
 
 	int animationFrame;
 
@@ -30,9 +31,8 @@ public:
 	void update();
 
 	RECT getRenderPosition();
-	void setRenderPosition(RECT* spriteRect);
 
-	void drawSprite(Character* player);
+	void drawSprite(Character* player, std::vector<Character*>& spawnList);
 	void release();
 
 };

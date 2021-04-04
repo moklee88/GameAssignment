@@ -11,7 +11,7 @@ EnemyController* EnemyController::getInstance()
 {
 	if (EnemyController::sInstance == NULL)
 	{
-		sInstance = new EnemyController(&Spawner::getInstance()->spawnList);
+		sInstance = new EnemyController(Scene::getInstance()->spawnList);
 	}
 
 	return sInstance;
@@ -23,9 +23,9 @@ void EnemyController::releaseInsrance()
 	sInstance = NULL;
 }
 
-EnemyController::EnemyController(std::vector<Character*> *spawnList)
+EnemyController::EnemyController(std::vector<Character*> &spawnList)
 {
-	this->spawnList = *spawnList;
+	this->spawnList = spawnList;
 }
 
 EnemyController::~EnemyController()

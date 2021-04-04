@@ -24,6 +24,7 @@ void Spawner::releaseInsrance()
 Spawner::Spawner()
 {
 	spawnSpeed = 6;
+	spawnTime = 0;
 }
 
 Spawner::~Spawner()
@@ -39,13 +40,12 @@ void Spawner::init()
 void Spawner::update()
 {
 	//spawner delay
-
 	spawnTime += (0.001f) * spawnSpeed;
 	if (spawnTime > 1)
 	{
-		enemy = new Character();
+		Character* enemy = new Character();
 
-		spawnList.push_back(enemy);
+		Scene::getInstance()->spawnList.push_back(enemy);
 
 		spawnTime = 0;
 	}

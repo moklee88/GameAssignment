@@ -8,53 +8,75 @@ Sprite::Sprite()
 
 	grenadeRect.left = 0;
 	grenadeRect.top = 0;
-	grenadeRect.right = 23;
-	grenadeRect.bottom = 28;
+	grenadeRect.right = 0;
+	grenadeRect.bottom = 0;
+
+	playerRect.left = 0;
+	playerRect.top = 0;
+	playerRect.right = 0;
+	playerRect.bottom = 0;
+
+	enemyRect.left = 0;
+	enemyRect.top = 0;
+	enemyRect.right = 0;
+	enemyRect.bottom = 0;
 
 	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
 
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "grenade.png", &grenade);
 
-
-	setRenderPosition(&spriteRect);
 	animationFrame = 0;
 
-	characterSize.x = 62;
-	characterSize.y = 97;
+	playerSize.x = 62;
+	playerSize.y = 97;
+
+
+	
 
 }
 
 
 void Sprite::update()
 {
+	//player animation
 	animationFrame++;
 	animationFrame %= 9;
 
-	spriteRect.top = 0;
-	spriteRect.left = characterSize.x * animationFrame;
+	playerRect.top = 0;
+	playerRect.left = playerSize.x * animationFrame;
 	
-	spriteRect.right = spriteRect.left + characterSize.x;
-	spriteRect.bottom = spriteRect.top + characterSize.y;
+	playerRect.right = playerRect.left + playerSize.x;
+	playerRect.bottom = playerRect.top + playerSize.y;
+
+
+	enemyRect.top = 98;
+	enemyRect.left = playerSize.x * animationFrame;
+
+	enemyRect.right = enemyRect.left + playerSize.x;
+	enemyRect.bottom = enemyRect.top + playerSize.y;
 
 }
 
-void Sprite::drawSprite(Character* player)
+void Sprite::drawSprite(Character* player, std::vector<Character*>& spawnList)
 {
 	//	Clear and begin scene
 
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
-	sprite->Draw(resource, &spriteRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
+	sprite->Draw(resource, &playerRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
 
-
-
+	for (int i = 0; i < spawnList.size(); i++)
+	{
+		sprite->Draw(resource, &enemyRect, NULL, &spawnList[i]->position, D3DCOLOR_XRGB(255, 255, 255));
+	}
 
 	//	End sprite drawing
 	sprite->End();
 
 	//	End and present scene
 }
+
 
 
 
@@ -83,13 +105,5 @@ void Sprite::releaseInstance() {
 
 RECT Sprite::getRenderPosition()
 {
-	return spriteRect;
-}
-
-void Sprite::setRenderPosition(RECT *spriteRect)
-{
-	spriteRect->left = 0;
-	spriteRect->top = 0;
-	spriteRect->right = 61;
-	spriteRect->bottom = 97;
+	return playerRect;
 }

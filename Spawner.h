@@ -5,24 +5,22 @@
 #include <vector>
 
 #include "Character.h"
+#include "Scene.h"
 
 class Spawner
 {
 private:
 	static Spawner* sInstance;
-	Character* enemy;
-
-public:
 	Spawner();
 	~Spawner();
+public:
+
 
 	static Spawner* getInstance();
 	static void releaseInsrance();
 
 	void init();
 	void update();
-
-	std::vector<Character*> spawnList;
 
 	int spawnSpeed;
 	float spawnTime;

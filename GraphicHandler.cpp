@@ -59,7 +59,7 @@ void GraphicHandler::draw() {
 
 	HealthBar::getInstance()->drawSprite();
 	Background::getInstance()->drawSprite();
-	Sprite::getInstance()->drawSprite(Scene::getInstance()->getPlayer());
+	Sprite::getInstance()->drawSprite(Scene::getInstance()->getPlayer(),Scene::getInstance()->spawnList);
 
 
 	//	End the scene

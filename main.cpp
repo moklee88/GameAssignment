@@ -53,7 +53,7 @@ int main() {
 	Sprite::releaseInstance();
 	Background::releaseInstance();
 	HealthBar::releaseInstance();
-	
+	Scene::releaseInstance();
 
 	delete timer;
 
