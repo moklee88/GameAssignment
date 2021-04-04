@@ -8,13 +8,14 @@ HealthBar::HealthBar()
 	this->texture = NULL;
 
 	this->healthbar = NULL;
-	this->backgroundRect = { 0,0,70,34};
+	this->backgroundRect = { 0,0,35,34 };
+	//this->backgroundRect = { 0,0,70,34};
 
 
 
 	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &healthbar);
 
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "HealthBar2.jpg", &texture);
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "HealthBar.jpg", &texture);
 
 
 
@@ -23,16 +24,7 @@ HealthBar::HealthBar()
 
 
 	float x = 0, y = 50;
-	for (int r = 0; r < 2; r++)
-	{
-
-		for (int c = 0; c < 4; c++)
-		{
-			drawPosition[r][c] = { x,y,0 };
-		}
-
-		x = 0;
-	}
+	drawPosition[1][0] = { x,y,0 };
 	x = NULL;
 	y = NULL;
 
