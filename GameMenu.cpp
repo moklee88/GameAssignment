@@ -1,4 +1,5 @@
 #include "GameMenu.h"
+#include "Ginput.h"
 #include "stdio.h"
 
 GameMenu* GameMenu::sInstance = NULL;
@@ -40,7 +41,8 @@ GameMenu::GameMenu()
 
 
 void GameMenu::update()
-{
+{	
+//	GInput* input = GInput::getInstance;
 }
 
 void GameMenu::drawSprite()
