@@ -152,6 +152,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="FrameTimer.h" />
+    <ClInclude Include="GameMenu.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameWindow.h" />
     <ClInclude Include="Ginput.h" />
@@ -173,6 +174,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="FrameTimer.cpp" />
+    <ClCompile Include="GameMenu.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Ginput.cpp" />
     <ClCompile Include="GraphicHandler.cpp" />
