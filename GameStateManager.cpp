@@ -27,6 +27,7 @@ GameStateManager::GameStateManager()
 	framesToUpdate = 0;
 
 	GameMenu* menu = new GameMenu();
+	stateList.push_back(menu);
 
 	Scene* level = new Scene();
 	stateList.push_back(level);
