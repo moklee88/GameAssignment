@@ -1,19 +1,19 @@
 #include "Grenade.h"
 
-Grenade::Grenade(D3DXVECTOR2* position)
+Grenade::Grenade(D3DXVECTOR3* position)
 {
-	this->position = { 53,34 };
+	this->position = { 53,34,0 };
 	this->position += *position;
 
-	direction = { 0,-1 };
-	speed = { 0,0 };
+	direction = { 0,-1,0 };
+	speed = { 0,0,0 };
 	force = 200;
 }
 
 bool Grenade::launch()
 {
 	direction = GInput::getInstance()->getMousePosition() - position;
-	D3DXVec2Normalize(&direction, &direction);
+	D3DXVec3Normalize(&direction, &direction);
 
 	speed = direction * force;
 

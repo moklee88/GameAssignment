@@ -32,6 +32,7 @@ GInput::GInput()
 
     mousePosition.x = GameWindow::getInstance()->mouseX;
     mousePosition.y = GameWindow::getInstance()->mouseY;
+    mousePosition.z = 0;
 }
 
 GInput::~GInput()
@@ -82,6 +83,6 @@ bool GInput::isMouseClick(int index) {
 }
 
 
-D3DXVECTOR2 GInput::getMousePosition() {
+D3DXVECTOR3 GInput::getMousePosition() {
     return mousePosition;
 }

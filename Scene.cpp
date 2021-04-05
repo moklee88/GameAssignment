@@ -42,13 +42,23 @@ void Scene::fixedUpdate()
 	for (int i = 0; i < spawnList.size(); i++)
 	{
 		spawnList[i]->physic();
-		if (isPlayerCollideEnemy(spawnList[i]->position)||spawnList[i]->position.x <=0)
+		//check collision on player and enemy
+		if (isPlayerCollideEnemy(spawnList[i]->position)||spawnList[i]->position.x <= 0)
 		{
-			player->lostHp();
+			
+			if (isPlayerCollideEnemy(spawnList[i]->position))
+			{
+				player->lostHp();
+			}
 			spawnList.erase(spawnList.begin() + i);
-
+			break;
 		}
+
+
 	}
+
+	//if(grenade && (isCollide(grenade->position,21,))
+
 }
 
 void Scene::Scene1()
@@ -70,10 +80,10 @@ void Scene::Scene1()
 	else
 		player->stationary();
 
-	if (GInput::getInstance()->isMouseClick(DIMOFS_BUTTON1))
-	{
-
-	}
+	//if (GInput::getInstance()->isMouseClick(DIMOFS_BUTTON1))
+	//{
+	//	grenade = new Grenade(&player->position);
+	//}
 
 }
 

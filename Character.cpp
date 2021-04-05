@@ -23,8 +23,8 @@ Character::Character()
 	this->hp = 1;
 	this->speed = { -force,0,0 };
 
-	this->position.x = 580;
-	this->position.y = 100;
+	this->position.x = 600;
+	this->position.y = 250;
 	this->position.z = 0;
 
 	this->boundary = 350;

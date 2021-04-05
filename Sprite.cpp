@@ -6,10 +6,10 @@ Sprite* Sprite::sInstance = NULL;
 Sprite::Sprite()
 {
 
-	grenadeRect.left = 0;
-	grenadeRect.top = 0;
-	grenadeRect.right = 0;
-	grenadeRect.bottom = 0;
+	grenadeRect.left = 558;
+	grenadeRect.top = 11;
+	grenadeRect.right = 581;
+	grenadeRect.bottom = 39;
 
 	playerRect.left = 0;
 	playerRect.top = 0;
@@ -58,7 +58,7 @@ void Sprite::update()
 
 }
 
-void Sprite::drawSprite(Character* player, std::vector<Character*>& spawnList)
+void Sprite::drawSprite(Character* player, std::vector<Character*>& spawnList, Grenade* grenade)
 {
 	//	Clear and begin scene
 
@@ -71,13 +71,16 @@ void Sprite::drawSprite(Character* player, std::vector<Character*>& spawnList)
 		sprite->Draw(resource, &enemyRect, NULL, &spawnList[i]->position, D3DCOLOR_XRGB(255, 255, 255));
 	}
 
+	//if (grenade)
+	//{
+	//	sprite->Draw(resource, &grenadeRect, NULL, &grenade->position, D3DCOLOR_XRGB(255, 255, 255));
+	//}
+
 	//	End sprite drawing
 	sprite->End();
 
 	//	End and present scene
 }
-
-
 
 
 void Sprite::release()

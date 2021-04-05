@@ -32,7 +32,7 @@ public:
 
 	RECT getRenderPosition();
 
-	void drawSprite(Character* player, std::vector<Character*>& spawnList);
+	void drawSprite(Character* player, std::vector<Character*>& spawnList, Grenade* grenade);
 	void release();
 
 };

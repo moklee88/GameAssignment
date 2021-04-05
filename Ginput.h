@@ -11,7 +11,7 @@ private:
     LPDIRECTINPUTDEVICE8  dInputKeyboardDevice;
     LPDIRECTINPUTDEVICE8 mouseDevice;
 
-    D3DXVECTOR2 mousePosition;
+    D3DXVECTOR3 mousePosition;
     HRESULT result;
     
     static GInput* sInstance;
@@ -26,6 +26,6 @@ public:
     
     bool isKeyDown(int index);
     bool isMouseClick(int index);
-    D3DXVECTOR2 getMousePosition();
+    D3DXVECTOR3 getMousePosition();
 
 };

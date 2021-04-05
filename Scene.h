@@ -1,8 +1,8 @@
 #pragma once
 #include "Character.h"
+#include "Grenade.h"
 #include "Ginput.h"
 #include "Spawner.h"
-#include "EnemyController.h"
 
 class Scene
 {
@@ -16,6 +16,7 @@ public:
 	static void releaseInstance();
 
 	std::vector<Character*> spawnList;
+	Grenade* grenade;
 
 	Character* getPlayer();
 

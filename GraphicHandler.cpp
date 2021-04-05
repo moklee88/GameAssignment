@@ -59,8 +59,8 @@ void GraphicHandler::draw() {
 	//	Drawing.
 
 	HealthBar::getInstance()->drawSprite();
-	Background::getInstance()->drawSprite();
-	Sprite::getInstance()->drawSprite(Scene::getInstance()->getPlayer());
+	//Background::getInstance()->drawSprite();
+	Sprite::getInstance()->drawSprite(Scene::getInstance()->getPlayer(), Scene::getInstance()->spawnList,Scene::getInstance()->grenade);
 	//GameMenu::getInstance()->drawSprite();
 
 

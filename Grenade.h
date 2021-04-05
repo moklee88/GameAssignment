@@ -4,11 +4,12 @@
 class Grenade
 {
 private:
-	D3DXVECTOR2 direction, position, speed;
+	D3DXVECTOR3 direction, speed;
 	float force;
 public:
-	Grenade(D3DXVECTOR2* position);
+	Grenade(D3DXVECTOR3* position);
 
+	D3DXVECTOR3 position;
 	bool launch();
 
 	void physic();
