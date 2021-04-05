@@ -42,7 +42,18 @@ GameMenu::GameMenu()
 
 void GameMenu::update()
 {	
-//	GInput* input = GInput::getInstance;
+
+	GInput* input = GInput::getInstance();
+	cursorPosition = D3DXVECTOR2(GameWindow::getInstance()->mouseX, GameWindow::getInstance()->mouseY);
+	if (input->isMouseClick(0)) {
+		if (isButtonCollide(startPosition, buttonSize)) {
+			GameStateManager::getInstance()->currentState = 1;//enter select level
+		}
+		if (isButtonCollide(exitPosition, buttonSize)) {
+			PostQuitMessage(0);
+		}
+	}
+
 }
 
 void GameMenu::drawSprite()
@@ -121,3 +132,21 @@ void GameMenu::setRenderPosition(RECT* spriteRect)
 	spriteRect->bottom = 97;
 }
 
+bool GameMenu::isButtonCollide(D3DXVECTOR2 position, D3DXVECTOR2 size) {
+	/* D3DXVECTOR2 offset = p2 - p1;
+	float l = D3DXVec2Length(&offset);
+	if (l < length) {
+		return true;
+	}
+	return false; */
+
+		buttonRect.left = position.x;
+	buttonRect.right = position.x + size.x;
+	buttonRect.top = position.y;
+	buttonRect.bottom = position.y + size.y;
+	if (cursorPosition.y < buttonRect.top) return false;
+	if (cursorPosition.x < buttonRect.left) return false;
+	if (cursorPosition.x > buttonRect.right) return false;
+	if (cursorPosition.y > buttonRect.bottom) return false;
+	return true;
+}
