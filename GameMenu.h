@@ -20,7 +20,16 @@ private:
 	LPDIRECT3DTEXTURE9 resource;
 	int animationFrame;
 
+	LPDIRECT3DTEXTURE9 menu = NULL, startbutton = NULL, exitbutton = NULL, cursorTexture = NULL;
+	LPD3DXSPRITE sprite = NULL;
+	RECT buttonRect;
+	D3DXMATRIX menumat, startmat, exitmat, cursormat;
+	D3DXVECTOR2 buttonSize;
+	D3DXVECTOR2 menuPosition, startPosition, exitPosition, cursorPosition;
+
 public:
+
+
 	GameMenu();
 	D3DXVECTOR3 drawPosition[2][5];
 
@@ -35,4 +44,6 @@ public:
 	void drawSprite();
 	void release();
 
+
+	bool isButtonCollide(D3DXVECTOR2 position, D3DXVECTOR2 size);
 };
