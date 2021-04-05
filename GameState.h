@@ -1,4 +1,5 @@
 #pragma once
+#include "GraphicHandler.h"
 class GameState
 {
 public:

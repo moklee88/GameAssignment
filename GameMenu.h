@@ -1,9 +1,10 @@
 #pragma once
 #include "GraphicHandler.h"
 #include "GameMenu.h"
+#include "GameState.h"
 #include <d3dx9.h>
 
-class GameMenu
+class GameMenu : public GameState
 {
 private:
 	static GameMenu* sInstance;
@@ -18,9 +19,6 @@ private:
 
 	LPDIRECT3DTEXTURE9 resource;
 	int animationFrame;
-
-
-
 
 public:
 	GameMenu();

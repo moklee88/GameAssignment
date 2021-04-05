@@ -5,9 +5,17 @@ Grenade::Grenade(D3DXVECTOR3* position)
 	this->position = { 53,34,0 };
 	this->position += *position;
 
+	size.x = 17;
+	size.y = 23;
+
 	direction = { 0,-1,0 };
 	speed = { 0,0,0 };
 	force = 200;
+
+	rect.left = 558;
+	rect.top = 11;
+	rect.right = 581;
+	rect.bottom = 39;
 }
 
 bool Grenade::launch()
@@ -35,5 +43,4 @@ void Grenade::physic()
 		position.y = 300;
 		speed.x = -1;
 	}
-
 }

@@ -3,14 +3,20 @@
 #include "Grenade.h"
 #include "Ginput.h"
 #include "Spawner.h"
+#include "GameState.h"
 
-class Scene
+class Scene :public GameState
 {
 private:
 	static Scene* sInstance;
 	Character* player;
 
 	RECT firstObjHitbox, secondObjHitbox;
+
+	//Sprite Variable
+	LPD3DXSPRITE sprite;
+	LPDIRECT3DTEXTURE9 resource;
+
 public:
 	static Scene* getInstance();
 	static void releaseInstance();
@@ -21,10 +27,13 @@ public:
 	Character* getPlayer();
 
 	Scene();
-
-	void fixedUpdate();
-	void Scene1();
-	void dead();
+	~Scene();
+	
+	void init();
+	void update();
+	void fixUpdate();
+	void draw();
+	void release();
 	
 	bool isPlayerCollideEnemy(D3DXVECTOR3 objPos);
 	bool isPlayerCollidePlatform(D3DXVECTOR3 objPos);

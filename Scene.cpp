@@ -24,13 +24,19 @@ Character* Scene::getPlayer()
 
 Scene::Scene()
 {
-	player = new Character(3, 10, 200, -8, 62, 97);
+	player = new Character(3, 10, 200);
 	firstObjHitbox = { 0,0 };
 	secondObjHitbox = { 0,0 };
 
+
+	D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
+
+	D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
+
+
 }
 
-void Scene::fixedUpdate()
+void Scene::fixUpdate()
 {
 	Spawner::getInstance()->update();
 
@@ -57,11 +63,14 @@ void Scene::fixedUpdate()
 
 	}
 
-	//if(grenade && (isCollide(grenade->position,21,))
+	//if (grenade && (isCollide(grenade->position, 21, ))
+	//{
+
+	//}
 
 }
 
-void Scene::Scene1()
+void Scene::update()
 {
 	//Movement
 	if (GInput::getInstance()->isKeyDown(DIK_W) && player->position.y >= 300)
@@ -80,13 +89,54 @@ void Scene::Scene1()
 	else
 		player->stationary();
 
-	//if (GInput::getInstance()->isMouseClick(DIMOFS_BUTTON1))
-	//{
-	//	grenade = new Grenade(&player->position);
-	//}
+	if (GInput::getInstance()->isMouseClick(DIMOFS_BUTTON1))
+	{
+		grenade = new Grenade(&player->position);
+	}
 
 }
 
+void Scene::draw()
+{
+	sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+	for (int i = 0; i < spawnList.size(); i++)
+	{
+		sprite->Draw(resource, &spawnList[i]->rect, NULL, &spawnList[i]->position, D3DCOLOR_XRGB(0, 255, 0));
+	}
+	sprite->Draw(resource, &player->rect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
+
+	sprite->End();
+}
+
+void Scene::release()
+{
+	//Sprite Release
+	sprite->Release();
+	sprite = NULL;
+
+	resource->Release();
+	resource = NULL;
+
+	delete player;
+	grenade = NULL;
+	firstObjHitbox = { NULL,NULL };
+	secondObjHitbox = { NULL,NULL };
+
+	//Sprite Variable
+	sprite = NULL;
+	resource = NULL;
+
+
+	for (int i = 0; i < spawnList.size(); i++)
+	{
+		delete spawnList[i];
+		spawnList[i] = NULL;
+	}
+	delete grenade;
+	grenade = NULL;
+
+}
 
 bool Scene::isPlayerCollidePlatform(D3DXVECTOR3 objPos)
 {

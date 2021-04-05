@@ -1,6 +1,4 @@
 #include "GraphicHandler.h"
-#include "Sprite.h"
-#include "Scene.h"
 #include "HealthBar.h"
 #include "GameMenu.h"
 #include "Background.h"
@@ -58,9 +56,9 @@ void GraphicHandler::draw() {
 	//	To Do:
 	//	Drawing.
 
+	GameStateManager::getInstance()->draw();
 	HealthBar::getInstance()->drawSprite();
 	//Background::getInstance()->drawSprite();
-	Sprite::getInstance()->drawSprite(Scene::getInstance()->getPlayer(), Scene::getInstance()->spawnList,Scene::getInstance()->grenade);
 	//GameMenu::getInstance()->drawSprite();
 
 

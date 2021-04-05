@@ -13,8 +13,12 @@ public:
 	D3DXVECTOR3 position,speed;
 	D3DXVECTOR2 size;
 
-	Character(int hp, int x, int y, int height, float sizeX,float sizeY);
+	int animationFrame;
+	RECT rect;
+
+	Character(int hp, int x, int y);
 	Character();
+	~Character();
 
 	void physic();
 	void stationary();

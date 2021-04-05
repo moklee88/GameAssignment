@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character(int hp, int x, int y, int height, float sizeX, float sizeY)
+Character::Character(int hp, int x, int y)
 {
 	this->hp = hp;
 
@@ -11,10 +11,18 @@ Character::Character(int hp, int x, int y, int height, float sizeX, float sizeY)
 	this->position.y = y;
 	this->position.z = 0;
 
-	this->size.x = sizeX;
-	this->size.y = sizeY;
 
-	this->boundary = 350;
+	rect.left = 0;
+	rect.top = 0;
+	rect.right = 0;
+	rect.bottom = 0;
+
+	this->size.x = 62;
+	this->size.y = 97;
+
+	this->boundary = 300;
+
+	this->animationFrame = 0;
 }
 
 Character::Character()
@@ -27,14 +35,37 @@ Character::Character()
 	this->position.y = 250;
 	this->position.z = 0;
 
-	this->boundary = 350;
+	rect.left = 0;
+	rect.top = 98;
+	rect.right = 0;
+	rect.bottom = 0;
 
+	this->size.x = 62;
+	this->size.y = 97;
+
+	this->boundary = 300;
+
+	this->animationFrame = 0;
+}
+
+Character::~Character()
+{
+	position = { NULL,NULL,NULL };
+	speed = { NULL,NULL,NULL };
+	size = { NULL,NULL };
+
+	animationFrame = NULL;
+	rect= { NULL,NULL,NULL,NULL };
+	boundary = NULL;
+	hp = NULL;
+	force = NULL;
 }
 
 
 void Character::physic()
 {
-	if (position.y <= 300)
+	animation();
+	if (position.y <= boundary)
 	{
 		speed.y += (200 / 60.0);
 		position += (speed / 60.0);
@@ -42,7 +73,7 @@ void Character::physic()
 	else
 	{
 		speed.y = 0;
-		position.y = 300;
+		position.y = boundary;
 	}
 }
 
@@ -77,5 +108,11 @@ void Character::death()
 
 void Character::animation()
 {
+	animationFrame++;
+	animationFrame %= 9;
 
+	rect.left = size.x * animationFrame;
+
+	rect.right = rect.left + size.x;
+	rect.bottom = rect.top + size.y;
 }
