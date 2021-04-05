@@ -1,6 +1,6 @@
 #pragma once
 #include "FrameTimer.h"
-#include "GameState.h"
+#include "GameMenu.h"
 #include "Scene.h"
 #include <vector>
 
