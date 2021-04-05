@@ -26,6 +26,8 @@ GameStateManager::GameStateManager()
 	timer->init(GAME_FPS);
 	framesToUpdate = 0;
 
+	GameMenu* menu = new GameMenu();
+
 	Scene* level = new Scene();
 	stateList.push_back(level);
 }
