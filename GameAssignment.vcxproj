@@ -170,7 +170,6 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="GameMenu.cpp" />
-    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Ginput.cpp" />
     <ClCompile Include="GraphicHandler.cpp" />
