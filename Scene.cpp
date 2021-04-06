@@ -55,6 +55,7 @@ void Scene::fixUpdate()
 
 	if (grenade != NULL && grenade->position.y >= grenade->boundary)
 	{
+
 		delete grenade;
 		grenade = NULL;
 	}
