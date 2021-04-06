@@ -1,27 +1,40 @@
 #include "Bullet.h"
 
-Bullet::Bullet(D3DXVECTOR2* position)
+Bullet::Bullet()
 {
-	this->position = { 53,34 };
-	this->position += *position;
 
-	direction = { 0,-1 };
-	speed = { 0,0 };
-	force = 200;
 }
 
-bool Bullet::shoot()
+Bullet::~Bullet()
 {
-	direction = GInput::getInstance()->getMousePosition() - position;
+
+}
+Bullet::Bullet(D3DXVECTOR3 position)
+{
+	this->position = { 53,34,0 };
+	this->position += position;
+
+	direction = { 1,0,0 };
+	speed = { 0,0,0 };
+	force = 200;
+
+	rect.left = 581;
+	rect.top = 11;
+	rect.right = 592;
+	rect.bottom = 24;
+
+	shoot();
+}
+
+void Bullet::shoot()
+{
+	//direction = GInput::getInstance()->getMousePosition() - position;
 
 	speed = direction * force;
-
-	return true;
 }
 
 
 void Bullet::physic()
 {
 	position += speed / 60.0;
-
 }

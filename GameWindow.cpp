@@ -72,6 +72,8 @@ int GameWindow::createWindow() {
 	//	These are the fundamental structure members to be specify, in order to create your window.
 	wndClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	wndClass.hCursor = LoadCursor(GetModuleHandle(NULL), IDC_ARROW/*MAKEINTRESOURCE(IDC_CURSOR1)*/);
+	ShowCursor(false);
+
 	wndClass.hInstance = hInstance; //GetModuleHandle(NULL);
 	wndClass.lpfnWndProc = WindowProcedure;
 	wndClass.lpszClassName = "My Window";

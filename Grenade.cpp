@@ -70,6 +70,7 @@ void Grenade::physic()
 	}
 	else
 	{
+		speed.x = 1;
 		position.y = boundary;
 	}
 }
