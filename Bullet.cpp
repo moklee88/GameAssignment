@@ -7,7 +7,16 @@ Bullet::Bullet()
 
 Bullet::~Bullet()
 {
+	this->position = { NULL,NULL,NULL };
 
+	direction = { NULL,NULL,NULL };
+	speed = { NULL,NULL,NULL };
+	force = NULL;
+
+	rect.left = NULL;
+	rect.top = NULL;
+	rect.right = NULL;
+	rect.bottom = NULL;
 }
 Bullet::Bullet(D3DXVECTOR3 position)
 {
@@ -20,8 +29,8 @@ Bullet::Bullet(D3DXVECTOR3 position)
 
 	rect.left = 581;
 	rect.top = 11;
-	rect.right = 592;
-	rect.bottom = 24;
+	rect.right = 587;
+	rect.bottom = 18;
 
 	shoot();
 }

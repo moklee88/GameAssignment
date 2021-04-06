@@ -14,12 +14,10 @@ Scene::Scene()
 
 	mouse = { 593,11,645,63 };
 
-
 	ptrSpawnList = &spawnList;
 	spawner = new Spawner(ptrSpawnList);
 
 	D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
-
 
 	background = new Background();
 	
@@ -29,6 +27,8 @@ Scene::Scene()
 Scene::~Scene()
 {
 	bulletTimer = NULL;
+
+	release();
 }
 
 void Scene::init()
@@ -49,12 +49,18 @@ void Scene::fixUpdate()
 	if (grenade != NULL)
 		grenade->physic();
 
+	if (bulletTimer <= 1)
+	{
+		bulletTimer += 0.06;
+	}
+
 	for (int i = 0; i < bullets.size(); i++)
 	{
 		bullets[i]->physic();
 		if(bullets[i]->position.x >= 700)
 			bullets.erase(bullets.begin() + i);
 	}
+
 	//Enemy activity
 	for (int i = 0; i < spawnList.size(); i++)
 	{
@@ -99,15 +105,16 @@ void Scene::update()
 		player->stationary();
 
 	//Launch Grenade
-	if (GInput::getInstance()->isKeyDown(DIK_O) && grenade == NULL)
+	if (GInput::getInstance()->isMouseClick(1) && grenade == NULL)
 	{
 		grenade = new Grenade(player->position);
 	}
 
-	if (GInput::getInstance()->isKeyDown(DIK_P))
+	if (GInput::getInstance()->isMouseClick(0) && bulletTimer >= 1)
 	{
 		bullet = new Bullet(player->position);
 		bullets.push_back(bullet);
+		bulletTimer = 0;
 	}
 
 }
@@ -138,7 +145,6 @@ void Scene::draw()
 	sprite->Draw(resource, &player->rect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
 
 	//Mouse
-
 	sprite->Draw(resource, &mouse, &mouseCenter, &mousePosition, D3DCOLOR_XRGB(255, 255, 255));
 
 	sprite->End();

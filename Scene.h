@@ -13,10 +13,10 @@ private:
 	Character* player;
 	Spawner* spawner;
 	Bullet* bullet;
-
+	float bulletTimer;
+	
 	D3DXVECTOR3 mousePosition, mouseCenter;
 
-	int bulletTimer;
 	RECT firstObjHitbox, secondObjHitbox, mouse;
 
 	//Sprite Variable
