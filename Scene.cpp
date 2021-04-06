@@ -33,8 +33,8 @@ void Scene::fixUpdate()
 	//Movement
 	player->physic();
 
-	//if (grenade != NULL)
-	//	grenade->physic();
+	if (grenade != NULL)
+		grenade->physic();
 
 	//Enemy activity
 
@@ -53,11 +53,11 @@ void Scene::fixUpdate()
 		}
 	}
 
-	//if (grenade != NULL&& grenade->position.y >= grenade->boundary)
-	//{
-	//	delete grenade;
-	//	grenade == NULL;
-	//}
+	if (grenade != NULL && grenade->position.y >= grenade->boundary)
+	{
+		delete grenade;
+		grenade = NULL;
+	}
 }
 
 void Scene::update()
@@ -80,10 +80,10 @@ void Scene::update()
 		player->stationary();
 
 	//Launch Grenade
-	//if (GInput::getInstance()->isKeyDown(DIK_O) && grenade == NULL)
-	//{
-	//	grenade = new Grenade(player->position);
-	//}
+	if (GInput::getInstance()->isKeyDown(DIK_O) && grenade == NULL)
+	{
+		grenade = new Grenade(player->position);
+	}
 
 }
 
@@ -100,8 +100,8 @@ void Scene::draw()
 	}
 
 	//Grenade
-	//if(grenade != NULL)
-	//	sprite->Draw(resource, &grenade->rect, NULL, &grenade->position, D3DCOLOR_XRGB(0, 255, 0));
+	if(grenade != NULL)
+		sprite->Draw(resource, &grenade->rect, NULL, &grenade->position, D3DCOLOR_XRGB(0, 255, 0));
 
 	//Character
 	sprite->Draw(resource, &player->rect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));

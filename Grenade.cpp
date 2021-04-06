@@ -43,7 +43,7 @@ Grenade::~Grenade()
 	rect.right = NULL;
 	rect.bottom = NULL;
 
-	hitbox = { NULL,NULL,NULL };
+	hitbox = { NULL,NULL,NULL, NULL};
 
 	boundary = NULL;
 
