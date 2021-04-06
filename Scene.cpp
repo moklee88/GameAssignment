@@ -3,11 +3,17 @@
 
 Scene::Scene()
 {
-	
+	bulletTimer = 0;
 	grenade = NULL;
 	player = new Character(3, 10, 200);
-	firstObjHitbox = { 0,0 };
-	secondObjHitbox = { 0,0 };
+	firstObjHitbox = { 0,0,0,0 };
+	secondObjHitbox = { 0,0,0,0 };
+
+	mousePosition = { 0,0,0 };
+	mouseCenter = { 26,26,0 };
+
+	mouse = { 593,11,645,63 };
+
 
 	ptrSpawnList = &spawnList;
 	spawner = new Spawner(ptrSpawnList);
@@ -20,6 +26,11 @@ Scene::Scene()
 	D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
 }
 
+Scene::~Scene()
+{
+	bulletTimer = NULL;
+}
+
 void Scene::init()
 {
 
@@ -27,6 +38,8 @@ void Scene::init()
 
 void Scene::fixUpdate()
 {
+	//Mouse
+	mousePosition = GInput::getInstance()->getMousePosition() - (26, 26, 0);
 	spawner->update();
 
 	background->update();
@@ -36,8 +49,13 @@ void Scene::fixUpdate()
 	if (grenade != NULL)
 		grenade->physic();
 
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		bullets[i]->physic();
+		if(bullets[i]->position.x >= 700)
+			bullets.erase(bullets.begin() + i);
+	}
 	//Enemy activity
-
 	for (int i = 0; i < spawnList.size(); i++)
 	{
 		spawnList[i]->physic();
@@ -86,10 +104,17 @@ void Scene::update()
 		grenade = new Grenade(player->position);
 	}
 
+	if (GInput::getInstance()->isKeyDown(DIK_P))
+	{
+		bullet = new Bullet(player->position);
+		bullets.push_back(bullet);
+	}
+
 }
 
 void Scene::draw()
 {
+	
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
 	background->drawSprite(&sprite);
@@ -99,6 +124,11 @@ void Scene::draw()
 	{
 		sprite->Draw(resource, &spawnList[i]->rect, NULL, &spawnList[i]->position, D3DCOLOR_XRGB(0, 255, 0));
 	}
+	//Bullet
+	for (int i = 0; i < bullets.size(); i++)
+	{
+		sprite->Draw(resource, &bullets[i]->rect, NULL, &bullets[i]->position, D3DCOLOR_XRGB(105, 105, 105));
+	}
 
 	//Grenade
 	if(grenade != NULL)
@@ -106,6 +136,10 @@ void Scene::draw()
 
 	//Character
 	sprite->Draw(resource, &player->rect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
+
+	//Mouse
+
+	sprite->Draw(resource, &mouse, &mouseCenter, &mousePosition, D3DCOLOR_XRGB(255, 255, 255));
 
 	sprite->End();
 }

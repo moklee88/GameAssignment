@@ -1,6 +1,7 @@
 #pragma once
 #include "Character.h"
 #include "Grenade.h"
+#include "Bullet.h"
 #include "Ginput.h"
 #include "Spawner.h"
 #include "GameState.h"
@@ -11,8 +12,12 @@ class Scene :public GameState
 private:
 	Character* player;
 	Spawner* spawner;
+	Bullet* bullet;
 
-	RECT firstObjHitbox, secondObjHitbox;
+	D3DXVECTOR3 mousePosition, mouseCenter;
+
+	int bulletTimer;
+	RECT firstObjHitbox, secondObjHitbox, mouse;
 
 	//Sprite Variable
 	LPD3DXSPRITE sprite;
@@ -24,6 +29,8 @@ private:
 public:
 	std::vector<Character*> spawnList;
 	std::vector<Character*>* ptrSpawnList;
+	std::vector<Bullet*> bullets;
+
 
 	Scene();
 	~Scene();

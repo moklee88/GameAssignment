@@ -5,12 +5,15 @@
 class Bullet
 {
 private:
-	D3DXVECTOR2 direction, position, speed;
 	float force;
 public:
-	Bullet(D3DXVECTOR2* position);
+	RECT rect;
+	D3DXVECTOR3 direction, position, speed;
+	Bullet();
+	~Bullet();
+	Bullet(D3DXVECTOR3 position);
 
-	bool shoot();
+	void shoot();
 
 	void physic();
 
