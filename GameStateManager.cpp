@@ -22,12 +22,8 @@ GameStateManager::GameStateManager()
 {
 	currentState = 0;
 
-	timer = new FrameTimer();
-	timer->init(GAME_FPS);
-	framesToUpdate = 0;
-
-	GameMenu* menu = new GameMenu();
-	stateList.push_back(menu);
+	//GameMenu* menu = new GameMenu();
+	//stateList.push_back(menu);
 
 	Scene* level = new Scene();
 	stateList.push_back(level);
@@ -43,7 +39,6 @@ GameStateManager::~GameStateManager()
 		stateList[i] = NULL;
 	}
 
-	delete timer;
 }
 
 
@@ -51,12 +46,9 @@ void GameStateManager::update()
 {
 	stateList[currentState]->update();
 
-	framesToUpdate = timer->framesToUpdate();
 
-	for (int i = 0; i < framesToUpdate; i++)
-	{
-		stateList[currentState]->fixUpdate();
-	}
+	stateList[currentState]->fixUpdate();
+
 
 }
 

@@ -5,14 +5,21 @@ class Grenade
 {
 private:
 	float force;
+	RECT hitbox;
+
 public:
-	Grenade(D3DXVECTOR3* position);
+	Grenade();
+	Grenade(D3DXVECTOR3 position);
+	~Grenade();
 	D3DXVECTOR2 size, explosionSize;
+	int boundary;
 
 	RECT rect;
 	D3DXVECTOR3 direction, speed, position;
-	bool launch();
+	void launch();
 
+	RECT getHitbox();
+	RECT getExplosionHitbox();
 	void physic();
 
 };

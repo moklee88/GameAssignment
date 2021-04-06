@@ -16,15 +16,14 @@ int main() {
 	GraphicHandler* graphic = GraphicHandler::getInstance();
 
 	GInput* input = GInput::getInstance();
-	GameStateManager* state = GameStateManager::getInstance();
 
 	window->createWindow();
 
 	graphic->initialize();
-	
+	GameStateManager* state = GameStateManager::getInstance();
+
 	while (window->loop())
 	{
-
 		input->update();
 		state->update();
 		//Scene::getInstance()->fixedUpdate();

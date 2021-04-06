@@ -1,14 +1,9 @@
 #pragma once
-#include "GraphicHandler.h"
-#include "GameMenu.h"
-#include "GameState.h"
 #include <d3dx9.h>
-
+#include "GameState.h"
 class GameMenu : public GameState
 {
 private:
-	static GameMenu* sInstance;
-
 	LPDIRECT3DTEXTURE9 texture,texture2;
 
 	LPD3DXSPRITE gamemenu;
@@ -31,18 +26,16 @@ public:
 
 
 	GameMenu();
+	~GameMenu();
 	D3DXVECTOR3 drawPosition[2][5];
 
-	static GameMenu* getInstance();
-	static void releaseInstance();
 
+	void init();
 	void update();
-
-	RECT getRenderPosition();
-	void setRenderPosition(RECT* spriteRect);
-
-	void drawSprite();
+	void fixUpdate();
+	void draw();
 	void release();
+
 
 
 	bool isButtonCollide(D3DXVECTOR2 position, D3DXVECTOR2 size);

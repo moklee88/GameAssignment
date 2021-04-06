@@ -1,7 +1,6 @@
 #include "GraphicHandler.h"
-#include "HealthBar.h"
-#include "GameMenu.h"
-#include "Background.h"
+#include "GameStateManager.h"
+#include "GameWindow.h"
 
 GraphicHandler* GraphicHandler::sInstance = NULL;
 
@@ -57,8 +56,6 @@ void GraphicHandler::draw() {
 	//	Drawing.
 
 	GameStateManager::getInstance()->draw();
-	HealthBar::getInstance()->drawSprite();
-	//Background::getInstance()->drawSprite();
 	//GameMenu::getInstance()->drawSprite();
 
 

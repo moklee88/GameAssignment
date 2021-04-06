@@ -1,43 +1,28 @@
+#pragma once
 #include <d3dx9.h>
-#include "GraphicHandler.h"
-#include "Ginput.h"
-#include "Character.h"
 
 class Background
 {
 private:
-	static Background* sInstance;
-
 	LPDIRECT3DTEXTURE9 texture;
 	LPDIRECT3DTEXTURE9 texture2;
 	LPDIRECT3DTEXTURE9 texture3;
 	LPDIRECT3DTEXTURE9 texture4;
 
-	LPD3DXSPRITE background;
+	LPD3DXSPRITE **backgroundLoader;
 
-	HRESULT hr;
+	RECT backgroundRect, backgroundRect2;
 
-	RECT spriteRect, backgroundRect, backgroundRect2;
-
-	LPDIRECT3DTEXTURE9 resource;
-	int animationFrame;
-
-	bool isCharMove = true;
-
-
+	int frame[4], maxFrame[4];
 public:
-	Background();	
 	D3DXVECTOR3 drawPosition[2][5];
 
-	static Background* getInstance();
-	static void releaseInstance();
+	Background();
+	~Background();
+	
 
 	void update();
 
-	RECT getRenderPosition();
-	void setRenderPosition(RECT* spriteRect);
-
-	void drawSprite();
-	void release();
+	void drawSprite(LPD3DXSPRITE* sprite);
 
 };

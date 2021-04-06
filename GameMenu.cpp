@@ -1,8 +1,8 @@
 #include "GameMenu.h"
 #include "Ginput.h"
-#include "stdio.h"
-
-GameMenu* GameMenu::sInstance = NULL;
+#include "GraphicHandler.h"
+#include "GameStateManager.h"
+#include "GameWindow.h"
 
 GameMenu::GameMenu()
 {
@@ -10,21 +10,11 @@ GameMenu::GameMenu()
 
 	this->gamemenu = NULL;
 	this->backgroundRect = { 0,0,125,65 };
-	//this->backgroundRect = { 0,0,70,34};
-
-
 
 	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &gamemenu);
 
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "PlayButton.png", &texture);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "QuitButton.png", &texture2);
-
-
-
-	setRenderPosition(&spriteRect);
-	animationFrame = 0;
-
-
 
 	float x = 200, y = 170;
 	drawPosition[1][0] = { x,y,0 };
@@ -40,9 +30,12 @@ GameMenu::GameMenu()
 }
 
 
+void GameMenu::init()
+{
+}
+
 void GameMenu::update()
 {	
-
 	GInput* input = GInput::getInstance();
 	cursorPosition = D3DXVECTOR2(GameWindow::getInstance()->mouseX, GameWindow::getInstance()->mouseY);
 	if (input->isMouseClick(0)) {
@@ -53,10 +46,13 @@ void GameMenu::update()
 			PostQuitMessage(0);
 		}
 	}
-
 }
 
-void GameMenu::drawSprite()
+void GameMenu::fixUpdate()
+{
+}
+
+void GameMenu::draw()
 {
 	//	Clear and begin scene
 
@@ -65,9 +61,6 @@ void GameMenu::drawSprite()
 	//background render
 	//D3DXMatrixTransformation2D(&matrix, NULL, 0.0, &scaling, NULL, 0, &characterPos);
 	//sprite->SetTransform(&matrix);
-
-
-
 
 	//sprite->Draw(grenade, &grenadeRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
 
@@ -86,7 +79,6 @@ void GameMenu::drawSprite()
 }
 
 
-
 void GameMenu::release()
 {
 	gamemenu->Release();
@@ -102,35 +94,8 @@ void GameMenu::release()
 
 
 	delete drawPosition;
-
-
 }
 
-GameMenu* GameMenu::getInstance() {
-	if (sInstance == NULL)
-		sInstance = new GameMenu();
-
-	return sInstance;
-}
-void GameMenu::releaseInstance() {
-	if (sInstance != NULL) {
-		delete sInstance;
-		sInstance = NULL;
-	}
-}
-
-RECT GameMenu::getRenderPosition()
-{
-	return spriteRect;
-}
-
-void GameMenu::setRenderPosition(RECT* spriteRect)
-{
-	spriteRect->left = 0;
-	spriteRect->top = 0;
-	spriteRect->right = 61;
-	spriteRect->bottom = 97;
-}
 
 bool GameMenu::isButtonCollide(D3DXVECTOR2 position, D3DXVECTOR2 size) {
 	/* D3DXVECTOR2 offset = p2 - p1;

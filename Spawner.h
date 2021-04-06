@@ -1,24 +1,20 @@
-#ifndef SPAWNER
-#define SPAWNER
-
+#pragma once
 #include <d3dx9.h>
 #include <vector>
 
 #include "Character.h"
-#include "Scene.h"
+
 
 class Spawner
 {
 private:
-	static Spawner* sInstance;
-	Spawner();
-	~Spawner();
+	
+
 public:
-
-
-	static Spawner* getInstance();
-	static void releaseInsrance();
-
+	Spawner();
+	Spawner(std::vector<Character*>* spawnList);
+	~Spawner();
+	std::vector<Character*>* spawnList;
 	void init();
 	void update();
 
@@ -26,4 +22,3 @@ public:
 	float spawnTime;
 };
 
-#endif // !SPAWNER

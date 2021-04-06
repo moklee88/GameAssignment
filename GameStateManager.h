@@ -1,10 +1,9 @@
 #pragma once
-#include "FrameTimer.h"
+
 #include "GameMenu.h"
 #include "Scene.h"
+#include "GameState.h"
 #include <vector>
-
-#define GAME_FPS 20
 
 class GameStateManager
 {
@@ -17,10 +16,8 @@ public:
 	static GameStateManager* getInstance();
 	static void releaseInstance();
 
-	FrameTimer* timer;
-
 	int currentState;
-	float framesToUpdate;
+
 	std::vector<GameState*> stateList;
 
 	//Start screen

@@ -1,57 +1,49 @@
 #include "Scene.h"
-
-Scene* Scene::sInstance = NULL;
-
-Scene* Scene::getInstance() {
-	if (sInstance == NULL)
-		sInstance = new Scene;
-
-	return sInstance;
-}
-
-void Scene::releaseInstance() {
-	if (sInstance != NULL) {
-		delete sInstance;
-		sInstance = NULL;
-	}
-}
-
-Character* Scene::getPlayer()
-{
-	return player;
-}
-
+#include "GraphicHandler.h"
 
 Scene::Scene()
 {
+	
+	grenade = NULL;
 	player = new Character(3, 10, 200);
 	firstObjHitbox = { 0,0 };
 	secondObjHitbox = { 0,0 };
 
+	ptrSpawnList = &spawnList;
+	spawner = new Spawner(ptrSpawnList);
 
 	D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
 
-	D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
 
+	background = new Background();
+	
+	D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
+}
+
+void Scene::init()
+{
 
 }
 
 void Scene::fixUpdate()
 {
-	Spawner::getInstance()->update();
+	spawner->update();
 
+	background->update();
 	//Movement
 	player->physic();
+
+	//if (grenade != NULL)
+	//	grenade->physic();
 
 	//Enemy activity
 
 	for (int i = 0; i < spawnList.size(); i++)
 	{
 		spawnList[i]->physic();
-		//check collision on player and enemy
+		//check collision on enemy enemy
 		if (isPlayerCollideEnemy(spawnList[i]->position)||spawnList[i]->position.x <= 0)
 		{
-			
 			if (isPlayerCollideEnemy(spawnList[i]->position))
 			{
 				player->lostHp();
@@ -59,15 +51,13 @@ void Scene::fixUpdate()
 			spawnList.erase(spawnList.begin() + i);
 			break;
 		}
-
-
 	}
 
-	//if (grenade && (isCollide(grenade->position, 21, ))
+	//if (grenade != NULL&& grenade->position.y >= grenade->boundary)
 	//{
-
+	//	delete grenade;
+	//	grenade == NULL;
 	//}
-
 }
 
 void Scene::update()
@@ -89,10 +79,11 @@ void Scene::update()
 	else
 		player->stationary();
 
-	if (GInput::getInstance()->isMouseClick(DIMOFS_BUTTON1))
-	{
-		grenade = new Grenade(&player->position);
-	}
+	//Launch Grenade
+	//if (GInput::getInstance()->isKeyDown(DIK_O) && grenade == NULL)
+	//{
+	//	grenade = new Grenade(player->position);
+	//}
 
 }
 
@@ -100,10 +91,19 @@ void Scene::draw()
 {
 	sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
+	background->drawSprite(&sprite);
+
+	//Enemy
 	for (int i = 0; i < spawnList.size(); i++)
 	{
 		sprite->Draw(resource, &spawnList[i]->rect, NULL, &spawnList[i]->position, D3DCOLOR_XRGB(0, 255, 0));
 	}
+
+	//Grenade
+	//if(grenade != NULL)
+	//	sprite->Draw(resource, &grenade->rect, NULL, &grenade->position, D3DCOLOR_XRGB(0, 255, 0));
+
+	//Character
 	sprite->Draw(resource, &player->rect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
 
 	sprite->End();
@@ -119,7 +119,8 @@ void Scene::release()
 	resource = NULL;
 
 	delete player;
-	grenade = NULL;
+	player = NULL;
+
 	firstObjHitbox = { NULL,NULL };
 	secondObjHitbox = { NULL,NULL };
 
@@ -207,4 +208,20 @@ bool Scene::isCollide(D3DXVECTOR3 firstObjPos, D3DXVECTOR2 firstSize, D3DXVECTOR
 	return true;
 }
 
+bool Scene::isCollide(D3DXVECTOR3 firstObjPos, RECT secondObjHitbox)
+{
+	firstObjHitbox.left = firstObjPos.x;
+	firstObjHitbox.right = firstObjPos.x + 42;
+	firstObjHitbox.top = firstObjPos.y;
+	firstObjHitbox.bottom = firstObjPos.y + 11;
 
+	firstObjHitbox.left += 21;
+	firstObjHitbox.right -= 12;
+
+	if (firstObjHitbox.bottom < secondObjHitbox.top) return false;
+	if (firstObjHitbox.top > secondObjHitbox.bottom) return false;
+	if (firstObjHitbox.right < secondObjHitbox.left) return false;
+	if (firstObjHitbox.left > secondObjHitbox.right) return false;
+
+	return true;
+}

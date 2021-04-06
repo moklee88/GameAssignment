@@ -1,7 +1,6 @@
 #pragma once
 #include <d3d9.h>
-#include "GameStateManager.h"
-#include "GameWindow.h"
+
 
 class GraphicHandler
 {
