@@ -13,7 +13,7 @@ GameMenu::GameMenu()
 
 	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &gamemenu);
 
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "PlayButton.png", &texture);
+	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "Enter.png", &texture);
 	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "QuitButton.png", &texture2);
 
 	float x = 200, y = 170;

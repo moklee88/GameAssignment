@@ -12,7 +12,7 @@ Bullet::Bullet(D3DXVECTOR2* position)
 
 bool Bullet::shoot()
 {
-	direction = GInput::getInstance()->getMousePosition() - position;
+	//direction = GInput::getInstance()->getMousePosition() - position;
 
 	speed = direction * force;
 
