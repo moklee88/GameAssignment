@@ -24,7 +24,7 @@ Scene::Scene()
 
 	background = new Background();
 
-	yeetSound = new Sound("yeet.mp3", false);
+	//yeetSound = new Sound("yeet.mp3", false);
 
 	
 	D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);

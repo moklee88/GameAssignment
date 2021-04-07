@@ -1,4 +1,6 @@
 #include "GameStateManager.h"
+#include "GameMenu.h"
+#include "Scene.h"
 
 GameStateManager* GameStateManager::sInstance = NULL;
 

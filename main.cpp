@@ -2,11 +2,7 @@
 #define WIN32_LEAN_AND_MEAN 
 #include "GameWindow.h"
 #include "Ginput.h"
-#include "Background.h"
 #include "GameStateManager.h"
-#include "HealthBar.h"
-#include "FrameTimer.h"
-#include "Scene.h"
 #include <stdio.h>
 
 //--------------------------------------------------------------------
@@ -38,10 +34,7 @@ int main() {
 	graphic->releaseInstance();
 
 	state->releaseInstance();
-	//Sprite::releaseInstance();
-	//Background::releaseInstance();
-	//HealthBar::releaseInstance();
-	//Scene::releaseInstance();
+
 
 	return 0;
 }

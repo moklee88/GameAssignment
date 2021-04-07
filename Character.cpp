@@ -51,7 +51,7 @@ Character::Character()
 
 	this->animationFrame = 0;
 
-	timer = new FrameTimer();
+	timer = new FrameTimer;
 	timer->init(GAME_FPS);
 	framesToUpdate = 0;
 }
