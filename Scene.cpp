@@ -18,15 +18,13 @@ Scene::Scene()
 	ptrPlatformList = &platformList;
 	ptrCoinList = &coinList;
 
-	spawner = new Spawner(ptrSpawnList,ptrPlatformList,ptrCoinList);
+	spawner = new Spawner(ptrSpawnList, ptrPlatformList, ptrCoinList);
 
 	D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
 
+	bullet = NULL;
 	background = new Background();
 
-	//yeetSound = new Sound("yeet.mp3", false);
-
-	
 	D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
 }
 
@@ -44,6 +42,48 @@ void Scene::init()
 
 void Scene::fixUpdate()
 {
+
+	player->animation();
+
+	for (int i = 0; i < spawnList.size(); i++)
+	{
+		spawnList[i]->animation();
+	}
+
+}
+
+void Scene::update()
+{
+	//Movement
+	if (GInput::getInstance()->isKeyDown(DIK_W) && player->position.y >= 300)
+	{
+		player->jump();
+	}
+
+	if (GInput::getInstance()->isKeyDown(DIK_A))
+	{
+		player->moveleft();
+	}
+	else if (GInput::getInstance()->isKeyDown(DIK_D))
+	{
+		player->moveright();
+	}
+	else
+		player->stationary();
+
+	//Launch Grenade
+	if (GInput::getInstance()->isMouseClick(1) && grenade == NULL)
+	{
+		grenade = new Grenade(player->position);
+	}
+
+	if (GInput::getInstance()->isMouseClick(0) && bulletTimer >= 1)
+	{
+		bullet = new Bullet(player->position);
+		bullets.push_back(bullet);
+		bulletTimer = 0;
+	}
+
 	//Mouse
 	mousePosition = GInput::getInstance()->getMousePosition() - (26, 26, 0);
 	spawner->update();
@@ -77,11 +117,10 @@ void Scene::fixUpdate()
 			//check collision on enemy with bullet
 			if (isCollide(spawnList[j]->position, bullets[i]->getHitbox()))
 			{
-				spawnList.erase(spawnList.begin() + i);
+				spawnList.erase(spawnList.begin() + j);
 				bullets.erase(bullets.begin() + i);
 				break;
 			}
-
 		}
 	}
 
@@ -95,15 +134,14 @@ void Scene::fixUpdate()
 		delete grenade;
 		grenade = NULL;
 	}
-	
+
 
 	//Enemy activity
 	for (int i = 0; i < spawnList.size(); i++)
 	{
-
 		spawnList[i]->physic();
 		//check collision on enemy with player
-		if (isPlayerCollideEnemy(spawnList[i]->position)||spawnList[i]->position.x <= 0)
+		if (isPlayerCollideEnemy(spawnList[i]->position) || spawnList[i]->position.x <= 0)
 		{
 
 			if (isPlayerCollideEnemy(spawnList[i]->position))
@@ -118,42 +156,6 @@ void Scene::fixUpdate()
 		}
 	}
 
-
-}
-
-void Scene::update()
-{
-	//Movement
-	if (GInput::getInstance()->isKeyDown(DIK_W) && player->position.y >= 300)
-	{
-		player->jump();
-	}
-
-	if (GInput::getInstance()->isKeyDown(DIK_A))
-	{
-		player->moveleft();
-	}
-	else if (GInput::getInstance()->isKeyDown(DIK_D))
-	{
-		player->moveright();
-	}
-	else
-		player->stationary();
-
-	//Launch Grenade
-	if (GInput::getInstance()->isMouseClick(1) && grenade == NULL)
-	{
-		grenade = new Grenade(player->position);
-		yeetSound->play();
-	}
-
-	if (GInput::getInstance()->isMouseClick(0) && bulletTimer >= 1)
-	{
-		bullet = new Bullet(player->position);
-		bullets.push_back(bullet);
-		bulletTimer = 0;
-	}
-
 }
 
 void Scene::draw()
@@ -164,7 +166,7 @@ void Scene::draw()
 	background->drawSprite(&sprite);
 
 	for (int i = 0; i < platformList.size(); i++)
-		sprite->Draw(resource, &platformList[i]->rect, NULL, &platformList[i]->position, D3DCOLOR_XRGB(0, 255, 0));
+		sprite->Draw(resource, &platformList[i]->rect, NULL, &platformList[i]->position, D3DCOLOR_XRGB(255, 255, 255));
 
 	//Enemy
 	for (int i = 0; i < spawnList.size(); i++)
@@ -215,7 +217,6 @@ void Scene::release()
 	delete grenade;
 	grenade = NULL;
 
-	yeetSound->Release();
 
 }
 

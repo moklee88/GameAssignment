@@ -5,7 +5,6 @@ Platform::~Platform()
 {
 	this->position = { NULL,NULL,NULL };
 
-	direction = { NULL,NULL,NULL };
 	speed = { NULL,NULL,NULL };
 	force = NULL;
 
@@ -18,8 +17,7 @@ Platform::Platform(D3DXVECTOR3 position)
 {
 	this->position = position;
 
-	direction = { -1,0,0 };
-	force = 150;
+	force = -150;
 	speed = { force,0,0 };
 	
 
@@ -33,6 +31,6 @@ Platform::Platform(D3DXVECTOR3 position)
 void Platform::physic()
 {
 	position += speed / 60.0;
-	speed = { force++,0,0 };
+	speed = { force--,0,0 };
 }
 

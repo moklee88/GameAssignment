@@ -19,7 +19,6 @@ public:
 	std::vector<Platform*>* platformList;
 	std::vector<Coins*>* coinList;
 
-	void init();
 	void update();
 
 	int spawnSpeed;

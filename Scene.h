@@ -8,7 +8,7 @@
 #include "Coins.h"
 #include "GameState.h"
 #include "Background.h"
-#include "Sound.h"
+
 
 class Scene :public GameState
 {
@@ -17,11 +17,12 @@ private:
 	Spawner* spawner;
 	Bullet* bullet;
 	float bulletTimer;
-	Sound* yeetSound/*, gunShot, music*/;
+
 	
 	D3DXVECTOR3 mousePosition, mouseCenter;
 
 	RECT firstObjHitbox, secondObjHitbox, mouse;
+
 
 	//Sprite Variable
 	LPD3DXSPRITE sprite;

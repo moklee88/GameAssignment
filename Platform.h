@@ -7,7 +7,7 @@ private:
 	float force;
 public:
 	RECT rect;
-	D3DXVECTOR3 direction, position, speed;
+	D3DXVECTOR3 position, speed;
 	Platform();
 	~Platform();
 

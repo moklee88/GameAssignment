@@ -23,10 +23,6 @@ Character::Character(int hp, int x, int y)
 	this->boundary = 300;
 
 	this->animationFrame = 0;
-
-	timer = new FrameTimer();
-	timer->init(GAME_FPS);
-	framesToUpdate = 0;
 }
 
 Character::Character()
@@ -50,10 +46,6 @@ Character::Character()
 	this->boundary = 300;
 
 	this->animationFrame = 0;
-
-	timer = new FrameTimer;
-	timer->init(GAME_FPS);
-	framesToUpdate = 0;
 }
 
 Character::~Character()
@@ -68,19 +60,11 @@ Character::~Character()
 	hp = NULL;
 	force = NULL;
 
-	delete timer;
-	timer = NULL;
 }
 
 
 void Character::physic()
 {
-	framesToUpdate = timer->framesToUpdate();
-
-	for (int i = 0; i < framesToUpdate; i++)
-	{
-		animation();
-	}
 
 	if (position.y <= boundary)
 	{

@@ -21,11 +21,6 @@ Spawner::~Spawner()
 
 }
 
-void Spawner::init()
-{
-	
-}
-
 void Spawner::update()
 {
 	//spawner delay
@@ -46,9 +41,10 @@ void Spawner::update()
 
 		spawnTime = 0;
 
-
-		delete enemy;
-		enemy = NULL;
+		//delete platform;
+		//platform = NULL;
+		//delete enemy;
+		//enemy = NULL;
 	}
 
 }

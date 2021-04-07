@@ -29,6 +29,10 @@ GameStateManager::GameStateManager()
 
 	Scene* level = new Scene();
 	stateList.push_back(level);
+
+	timer = new FrameTimer();
+	timer->init(GAME_FPS);
+	framesToUpdate = 0;
 }
 
 GameStateManager::~GameStateManager()
@@ -46,11 +50,14 @@ GameStateManager::~GameStateManager()
 
 void GameStateManager::update()
 {
+
 	stateList[currentState]->update();
+	framesToUpdate = timer->framesToUpdate();
 
-
-	stateList[currentState]->fixUpdate();
-
+	for (int i = 0; i < framesToUpdate; i++)
+	{
+		stateList[currentState]->fixUpdate();
+	}
 
 }
 

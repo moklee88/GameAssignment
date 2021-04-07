@@ -1,9 +1,7 @@
 #pragma once
 #include <d3dx9.h>
 #include <vector>
-#include "FrameTimer.h"
 
-#define GAME_FPS 20
 class Character
 {
 private:
@@ -11,8 +9,6 @@ private:
 	int hp;
 	float force;
 
-	FrameTimer* timer;
-	int framesToUpdate;
 public:
 	D3DXVECTOR3 position,speed;
 	D3DXVECTOR2 size;
@@ -33,7 +29,6 @@ public:
 
 	void lostHp();
 	int getHp();
-	void death();
 
 	void animation();
 
