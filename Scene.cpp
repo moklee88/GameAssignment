@@ -93,14 +93,18 @@ void Scene::update()
 	player->physic();
 
 	//Check platform
-
-
+	for (int i = 0; i < platformList.size(); i++)
+	{
+		platformList[i]->physic();
+		if (platformList[i]->position.x <= -50)
+			platformList.erase(platformList.begin() + i);
+	}
 	if (grenade != NULL)
 		grenade->physic();
 
 	if (bulletTimer <= 1)
 	{
-		bulletTimer += 0.06;
+		bulletTimer += 0.04;
 	}
 
 
@@ -108,29 +112,28 @@ void Scene::update()
 	for (int i = 0; i < bullets.size(); i++)
 	{
 		bullets[i]->physic();
-
 		if (bullets[i]->position.x >= 700)
 			bullets.erase(bullets.begin() + i);
 
-		for (int j = 0; j < spawnList.size(); j++)
-		{
-			//check collision on enemy with bullet
-			if (isCollide(spawnList[j]->position, bullets[i]->getHitbox()))
-			{
-				spawnList.erase(spawnList.begin() + j);
-				bullets.erase(bullets.begin() + i);
-				break;
-			}
-		}
+		//for (int j = 0; j < spawnList.size(); j++)
+		//{
+		//	//check collision on enemy with bullet
+		//	if (isCollide(spawnList[j]->position, bullets[i]->getHitbox()))
+		//	{
+		//		spawnList.erase(spawnList.begin() + j);
+		//		bullets.erase(bullets.begin() + i);
+		//		break;
+		//	}
+		//}
 	}
 
 	if (grenade != NULL && grenade->position.y >= grenade->boundary)
 	{
-		for (int i = 0; i < spawnList.size(); i++)
-		{
-			if (isCollide(spawnList[i]->position, grenade->getExplosionHitbox()))
-				spawnList.erase(spawnList.begin() + i);
-		}
+		//for (int i = 0; i < spawnList.size(); i++)
+		//{
+		//	if (isCollide(spawnList[i]->position, grenade->getExplosionHitbox()))
+		//		spawnList.erase(spawnList.begin() + i);
+		//}
 		delete grenade;
 		grenade = NULL;
 	}

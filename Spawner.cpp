@@ -26,7 +26,7 @@ void Spawner::update()
 	//spawner delay
 	spawnSpeed = (rand() % (10));
 	position.x = 700;
-	position.y = (rand()%100);
+	position.y = (rand()%100)+300;
 
 
 	spawnTime += (0.001f) * spawnSpeed;

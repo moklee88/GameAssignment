@@ -17,7 +17,7 @@ Platform::Platform(D3DXVECTOR3 position)
 {
 	this->position = position;
 
-	force = -150;
+	force = -120;
 	speed = { force,0,0 };
 	
 
