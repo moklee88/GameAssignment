@@ -26,11 +26,6 @@ int main() {
 	{
 		input->update();
 		state->update();
-		//Scene::getInstance()->fixedUpdate();
-		//Scene::getInstance()->Scene1();
-
-		//Background::getInstance()->update();
-		//Sprite::getInstance()->update();
 
 		graphic->draw();
 	}

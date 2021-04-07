@@ -15,11 +15,17 @@ Scene::Scene()
 	mouse = { 593,11,645,63 };
 
 	ptrSpawnList = &spawnList;
-	spawner = new Spawner(ptrSpawnList);
+	ptrPlatformList = &platformList;
+	ptrCoinList = &coinList;
+
+	spawner = new Spawner(ptrSpawnList,ptrPlatformList,ptrCoinList);
 
 	D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &sprite);
 
 	background = new Background();
+
+	yeetSound = new Sound("yeet.mp3", false);
+
 	
 	D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "resources.png", &resource);
 }
@@ -46,6 +52,9 @@ void Scene::fixUpdate()
 	//Movement
 	player->physic();
 
+	//Check platform
+
+
 	if (grenade != NULL)
 		grenade->physic();
 
@@ -54,35 +63,62 @@ void Scene::fixUpdate()
 		bulletTimer += 0.06;
 	}
 
+
+	//Bullet Collision
 	for (int i = 0; i < bullets.size(); i++)
 	{
 		bullets[i]->physic();
-		if(bullets[i]->position.x >= 700)
+
+		if (bullets[i]->position.x >= 700)
 			bullets.erase(bullets.begin() + i);
+
+		for (int j = 0; j < spawnList.size(); j++)
+		{
+			//check collision on enemy with bullet
+			if (isCollide(spawnList[j]->position, bullets[i]->getHitbox()))
+			{
+				spawnList.erase(spawnList.begin() + i);
+				bullets.erase(bullets.begin() + i);
+				break;
+			}
+
+		}
 	}
+
+	if (grenade != NULL && grenade->position.y >= grenade->boundary)
+	{
+		for (int i = 0; i < spawnList.size(); i++)
+		{
+			if (isCollide(spawnList[i]->position, grenade->getExplosionHitbox()))
+				spawnList.erase(spawnList.begin() + i);
+		}
+		delete grenade;
+		grenade = NULL;
+	}
+	
 
 	//Enemy activity
 	for (int i = 0; i < spawnList.size(); i++)
 	{
+
 		spawnList[i]->physic();
-		//check collision on enemy enemy
+		//check collision on enemy with player
 		if (isPlayerCollideEnemy(spawnList[i]->position)||spawnList[i]->position.x <= 0)
 		{
+
 			if (isPlayerCollideEnemy(spawnList[i]->position))
 			{
 				player->lostHp();
+
+				//if(player->getHp()<=0)
+				//	//swich state
 			}
 			spawnList.erase(spawnList.begin() + i);
 			break;
 		}
 	}
 
-	if (grenade != NULL && grenade->position.y >= grenade->boundary)
-	{
 
-		delete grenade;
-		grenade = NULL;
-	}
 }
 
 void Scene::update()
@@ -108,6 +144,7 @@ void Scene::update()
 	if (GInput::getInstance()->isMouseClick(1) && grenade == NULL)
 	{
 		grenade = new Grenade(player->position);
+		yeetSound->play();
 	}
 
 	if (GInput::getInstance()->isMouseClick(0) && bulletTimer >= 1)
@@ -126,16 +163,16 @@ void Scene::draw()
 
 	background->drawSprite(&sprite);
 
+	for (int i = 0; i < platformList.size(); i++)
+		sprite->Draw(resource, &platformList[i]->rect, NULL, &platformList[i]->position, D3DCOLOR_XRGB(0, 255, 0));
+
 	//Enemy
 	for (int i = 0; i < spawnList.size(); i++)
-	{
 		sprite->Draw(resource, &spawnList[i]->rect, NULL, &spawnList[i]->position, D3DCOLOR_XRGB(0, 255, 0));
-	}
+
 	//Bullet
 	for (int i = 0; i < bullets.size(); i++)
-	{
 		sprite->Draw(resource, &bullets[i]->rect, NULL, &bullets[i]->position, D3DCOLOR_XRGB(105, 105, 105));
-	}
 
 	//Grenade
 	if(grenade != NULL)
@@ -178,6 +215,8 @@ void Scene::release()
 	delete grenade;
 	grenade = NULL;
 
+	yeetSound->Release();
+
 }
 
 bool Scene::isPlayerCollidePlatform(D3DXVECTOR3 objPos)
@@ -196,7 +235,7 @@ bool Scene::isPlayerCollidePlatform(D3DXVECTOR3 objPos)
 	firstObjHitbox.right -= 12;
 
 	if (firstObjHitbox.bottom < secondObjHitbox.top) return false;
-	if (firstObjHitbox.bottom > secondObjHitbox.bottom) return false;
+	if (firstObjHitbox.top > secondObjHitbox.bottom) return false;
 	if (firstObjHitbox.right < secondObjHitbox.left) return false;
 	if (firstObjHitbox.left > secondObjHitbox.right) return false;
 	

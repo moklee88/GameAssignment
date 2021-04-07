@@ -1,22 +1,17 @@
 #pragma once
 #include <d3dx9.h>
-#include "Ginput.h"
 
-class Bullet
+class Platform
 {
 private:
 	float force;
-	RECT hitbox;
-
 public:
 	RECT rect;
 	D3DXVECTOR3 direction, position, speed;
-	Bullet();
-	~Bullet();
-	Bullet(D3DXVECTOR3 position);
+	Platform();
+	~Platform();
 
-	void shoot();
-	RECT getHitbox();
+	Platform(D3DXVECTOR3 position);
 
 	void physic();
 

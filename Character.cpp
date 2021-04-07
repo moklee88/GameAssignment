@@ -118,9 +118,9 @@ void Character::lostHp()
 	hp--;
 }
 
-void Character::death()
+int Character::getHp()
 {
-
+	return hp;
 }
 
 void Character::animation()

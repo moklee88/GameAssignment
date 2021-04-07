@@ -54,7 +54,16 @@ Background::~Background()
 			drawPosition[x][y] = { NULL,NULL,NULL };
 		}
 	}
-	NULL;
+
+	for (int i = 0; i < 4; i++)
+	{
+		frame[i] = NULL;
+	}
+
+	maxFrame[0] = NULL;
+	maxFrame[1] = NULL;
+	maxFrame[2] = NULL;
+	maxFrame[3] = NULL;
 
 	backgroundRect = { NULL,NULL,NULL,NULL };
 	backgroundRect2 = { NULL,NULL,NULL,NULL };

@@ -32,6 +32,7 @@ public:
 	void jump();
 
 	void lostHp();
+	int getHp();
 	void death();
 
 	void animation();
