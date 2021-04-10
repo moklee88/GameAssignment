@@ -1,6 +1,6 @@
 #include "UI.h"
 #include "GraphicHandler.h"
-
+#include <string>
 
 UI::UI()
 {
@@ -20,7 +20,7 @@ UI::UI()
 
 	rectScore.top = scoreStr->position.top;
 	rectScore.left = scoreStr->position.right + 30;
-	rectScore.right = scoreStr->position.left + 60;
+	rectScore.right = rectScore.left + 60;
 	rectScore.bottom = scoreStr->position.bottom;
 
 	D3DXCreateFont(GraphicHandler::getInstance()->getD3dDevice(), 35, 0, 0, 1, false,
