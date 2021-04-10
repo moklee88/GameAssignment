@@ -24,8 +24,8 @@ GameMenu::GameMenu()
 	D3DXCreateFont(GraphicHandler::getInstance()->getD3dDevice(), 35, 0, 0, 1, false,
 		DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
 		DEFAULT_PITCH | FF_DONTCARE, "Segoe Script", &font);
-
 	Sound::getInstance()->playBgmSound();
+
 }
 GameMenu::~GameMenu()
 {
@@ -34,11 +34,12 @@ GameMenu::~GameMenu()
 
 void GameMenu::init()
 {
+
 }
 
 void GameMenu::update()
 {	
-	background->update();
+
 	if (GInput::getInstance()->isKeyDown(DIK_RETURN))
 	{
 		GameStateManager::getInstance()->currentState = 1;
@@ -47,6 +48,7 @@ void GameMenu::update()
 
 void GameMenu::fixUpdate()
 {
+	background->update();
 }
 
 void GameMenu::draw()

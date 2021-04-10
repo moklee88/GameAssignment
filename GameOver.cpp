@@ -15,7 +15,7 @@ GameOver::GameOver()
 	scoreTitle = new Font("Your Score is", 100, 400, 200, 50);
 	score = new Font(0, 300, 400, 200, 50);
 	retry = new Font("Press ""R"" to Restart", 100, 450, 200, 50);
-	mainMenu = new  Font("Press ""M"" to return Main Menu", 100, 500, 200, 50);
+	mainMenu = new  Font("Press ""M"" to return Main Menu", 100, 500, 300, 50);
 
 	background = new Background();
 
@@ -38,8 +38,8 @@ void GameOver::init()
 
 void GameOver::update()
 {
-	background->update();
-	if (GInput::getInstance()->isKeyDown(DIK_RETURN))
+
+	if (GInput::getInstance()->isKeyDown(DIK_R))
 	{
 		GameStateManager::getInstance()->currentState = 1;
 	}
@@ -51,6 +51,7 @@ void GameOver::update()
 
 void GameOver::fixUpdate()
 {
+	background->update();
 }
 
 void GameOver::draw()

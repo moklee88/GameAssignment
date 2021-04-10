@@ -112,6 +112,7 @@ void Scene::init()
 void Scene::fixUpdate()
 {
 
+	background->update();
 	player->animation();
 
 	for (int i = 0; i < spawnList.size(); i++)
@@ -163,8 +164,6 @@ void Scene::update()
 
 	spawner->update();
 
-	background->update();
-
 	//Movement
 	player->physic();
 
@@ -212,6 +211,7 @@ void Scene::update()
 		{
 			coinList.erase(coinList.begin() + i);
 			score += 5;
+			Sound::getInstance()->playCoinSound();
 			break;
 		}
 	}
@@ -230,7 +230,7 @@ void Scene::update()
 				Sound::getInstance()->playDeathSound();
 				if (player->getHp() <= 0)
 				{
-					GameStateManager::getInstance()->currentState = 0;
+					GameStateManager::getInstance()->currentState = 2;
 					Score::getInstance()->setValue(score);
 					player->resetHp();
 					score = 0;

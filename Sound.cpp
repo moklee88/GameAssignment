@@ -27,6 +27,7 @@ Sound::Sound()
 	deathChannel = NULL;
 	gunChannel = NULL;
 	bgmChannel = NULL;
+	coinChannel = NULL;
 
 	yeetSound = NULL;
 	deathSound = NULL;
