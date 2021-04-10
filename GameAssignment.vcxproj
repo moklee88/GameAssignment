@@ -162,7 +162,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Gun.h" />
-    <ClInclude Include="HealthBar.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Scene.h" />
@@ -190,7 +189,6 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Gun.cpp" />
-    <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Platform.cpp" />

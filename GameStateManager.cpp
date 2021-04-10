@@ -48,6 +48,7 @@ GameStateManager::~GameStateManager()
 		delete stateList[i];
 		stateList[i] = NULL;
 	}
+
 }
 
 

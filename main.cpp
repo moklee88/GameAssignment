@@ -4,6 +4,7 @@
 #include "Ginput.h"
 #include "GameStateManager.h"
 #include "Score.h"
+#include "Sound.h"
 
 #include <stdio.h>
 
@@ -37,7 +38,7 @@ int main() {
 
 	state->releaseInstance();
 	Score::getInstance()->releaseInstance();
-
+	Sound::getInstance()->releaseInstance();
 
 	return 0;
 }

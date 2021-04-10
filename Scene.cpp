@@ -138,11 +138,11 @@ void Scene::update()
 		isJump = false;
 	}
 
-	if (GInput::getInstance()->isKeyDown(DIK_A))
+	if (GInput::getInstance()->isKeyDown(DIK_A) && player->position.x >= 0)
 	{
 		player->moveleft();
 	}
-	else if (GInput::getInstance()->isKeyDown(DIK_D))
+	else if (GInput::getInstance()->isKeyDown(DIK_D) && player->position.x <= 550)
 	{
 		player->moveright();
 	}
