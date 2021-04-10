@@ -20,6 +20,9 @@ private:
 	Spawner* spawner;
 	Bullet* bullet;
 	Gun* gun;
+	Grenade* grenade;
+	Background* background;
+	UI* gUI;
 
 	bool isJump;
 	D3DXVECTOR3 mousePosition, mouseCenter,gunActual;
@@ -29,10 +32,8 @@ private:
 	//Sprite Variable
 	LPD3DXSPRITE sprite;
 	LPDIRECT3DTEXTURE9 resource;
-	Grenade* grenade;
 	
-	Background* background;
-	UI* gUI;
+
 
 public:
 	std::vector<Character*> spawnList;
