@@ -28,11 +28,11 @@ GameStateManager::GameStateManager()
 	//GameMenu* menu = new GameMenu();
 	//stateList.push_back(menu);
 
-	Scene* level = new Scene();
-	stateList.push_back(level);
+	//Scene* level = new Scene();
+	//stateList.push_back(level);
 
-	//GameOver* gameOver = new GameOver();
-	//stateList.push_back(gameOver);
+	GameOver* gameOver = new GameOver();
+	stateList.push_back(gameOver);
 
 	timer = new FrameTimer();
 	timer->init(GAME_FPS);

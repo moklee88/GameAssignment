@@ -54,14 +54,14 @@ UI::~UI()
 }
 
 
-void UI::drawSprite(LPD3DXSPRITE* sprite, LPDIRECT3DTEXTURE9* resource, int hp, int score)
+void UI::drawSprite(LPD3DXSPRITE* sprite, LPDIRECT3DTEXTURE9* resource, int hp, int *score)
 {
 	for (i = 0; i < hp; i++)
 	{
 		(*sprite)->Draw(*resource, &hpRect, NULL, &hpPosition[i], D3DCOLOR_XRGB(255, 255, 255));
 	}
 
-	scoreFont->DrawText(*sprite, std::to_string(score).c_str(), -1, &rectScore, DT_LEFT, D3DCOLOR_XRGB(254, 254, 254));
+	scoreFont->DrawText(*sprite, std::to_string(*score).c_str(), -1, &rectScore, DT_LEFT, D3DCOLOR_XRGB(254, 254, 254));
 
 	scoreFont->DrawText(*sprite, scoreStr->word, -1, &scoreStr->position, DT_LEFT, D3DCOLOR_XRGB(254, 254, 254));
 

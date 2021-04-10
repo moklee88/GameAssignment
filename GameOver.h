@@ -9,7 +9,6 @@ private:
 	LPD3DXSPRITE gameOver;
 	LPD3DXFONT titleFont, font;
 	Font* title, * score, * scoreTitle, * retry, * mainMenu;
-	int *scoreValue;
 	Background* background;
 public:
 	GameOver();

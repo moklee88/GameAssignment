@@ -17,6 +17,6 @@ public:
 	UI();
 	~UI();
 
-	void drawSprite(LPD3DXSPRITE* sprite, LPDIRECT3DTEXTURE9* resource, int hp, int score);
+	void drawSprite(LPD3DXSPRITE* sprite, LPDIRECT3DTEXTURE9* resource, int hp, int *score);
 };
 

@@ -300,7 +300,7 @@ void Scene::draw()
 
 
 	//GUI
-	gUI->drawSprite(&sprite,&resource,player->getHp(), score);
+	gUI->drawSprite(&sprite,&resource,player->getHp(), &score);
 
 	sprite->End();
 }
