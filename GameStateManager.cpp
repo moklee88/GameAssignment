@@ -1,6 +1,7 @@
 #include "GameStateManager.h"
 #include "GameMenu.h"
 #include "Scene.h"
+#include "GameOver.h"
 
 GameStateManager* GameStateManager::sInstance = NULL;
 
@@ -30,6 +31,9 @@ GameStateManager::GameStateManager()
 	Scene* level = new Scene();
 	stateList.push_back(level);
 
+	//GameOver* gameOver = new GameOver();
+	//stateList.push_back(gameOver);
+
 	timer = new FrameTimer();
 	timer->init(GAME_FPS);
 	framesToUpdate = 0;
@@ -44,7 +48,6 @@ GameStateManager::~GameStateManager()
 		delete stateList[i];
 		stateList[i] = NULL;
 	}
-
 }
 
 

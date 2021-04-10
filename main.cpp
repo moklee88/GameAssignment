@@ -3,6 +3,8 @@
 #include "GameWindow.h"
 #include "Ginput.h"
 #include "GameStateManager.h"
+#include "Score.h"
+
 #include <stdio.h>
 
 //--------------------------------------------------------------------
@@ -34,6 +36,7 @@ int main() {
 	graphic->releaseInstance();
 
 	state->releaseInstance();
+	Score::getInstance()->releaseInstance();
 
 
 	return 0;

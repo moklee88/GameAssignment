@@ -1,17 +1,15 @@
 #pragma once
 #include <d3dx9.h>
-
-class Platform
+#include "Object.h"
+class Platform:public Object
 {
 private:
-	float force;
+
 public:
-	RECT rect;
-	D3DXVECTOR3 position, speed;
 	Platform();
 	~Platform();
 
-	Platform(D3DXVECTOR3 position);
+	Platform(D3DXVECTOR3 position, float force, float sizeX, float sizeY, float left, float top);
 
 	void physic();
 

@@ -23,7 +23,7 @@ Grenade::Grenade(D3DXVECTOR3 position)
 
 	hitbox = { 0, 0, 0, 0 };
 
-	boundary = 368;
+	boundary = 326;
 
 	launch();
 }
@@ -51,7 +51,6 @@ Grenade::~Grenade()
 
 void Grenade::launch()
 {
-	
 	direction = GInput::getInstance()->getMousePosition() - position;
 	D3DXVec3Normalize(&direction, &direction);
 
@@ -67,11 +66,6 @@ void Grenade::physic()
 	{
 		speed.y += (200 / 60.0);
 		position += (speed / 60.0);
-	}
-	else
-	{
-		speed.x = 1;
-		position.y = boundary;
 	}
 }
 

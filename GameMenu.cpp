@@ -2,33 +2,35 @@
 #include "Ginput.h"
 #include "GraphicHandler.h"
 #include "GameStateManager.h"
-#include "GameWindow.h"
+#include "GameWindow.h"]
+#include "Sound.h"
 
 GameMenu::GameMenu()
 {
-	this->texture = NULL;
+	this->gameMenu = NULL;
 
-	this->gamemenu = NULL;
-	this->backgroundRect = { 0,0,125,65 };
+	D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &gameMenu);
 
-	this->hr = D3DXCreateSprite(GraphicHandler::getInstance()->getD3dDevice(), &gamemenu);
+	title = new Font("MadRun", 160, 120, 200, 110);
+	enter = new Font("Press Enter to Play", 150, 170, 250, 30);
+	esc = new Font("Press ESC to Exit", 160, 200, 200, 30);
 
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "Enter.png", &texture);
-	this->hr = D3DXCreateTextureFromFile(GraphicHandler::getInstance()->getD3dDevice(), "QuitButton.png", &texture2);
+	background = new Background();
 
-	float x = 200, y = 170;
-	drawPosition[1][0] = { x,y,0 };
-	x = NULL;
-	y = NULL;
+	D3DXCreateFont(GraphicHandler::getInstance()->getD3dDevice(), 50, 0, 0, 1, false,
+		DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
+		DEFAULT_PITCH | FF_DONTCARE, "Segoe Script", &titleFont);
 
+	D3DXCreateFont(GraphicHandler::getInstance()->getD3dDevice(), 35, 0, 0, 1, false,
+		DEFAULT_CHARSET, OUT_TT_ONLY_PRECIS, DEFAULT_QUALITY,
+		DEFAULT_PITCH | FF_DONTCARE, "Segoe Script", &font);
 
-	float a = 200, b = 300;
-	drawPosition[1][1] = { a,b,0 };
-	a = NULL;
-	b = NULL;
-
+	Sound::getInstance()->playBgmSound();
 }
-
+GameMenu::~GameMenu()
+{
+	release();
+}
 
 void GameMenu::init()
 {
@@ -36,15 +38,10 @@ void GameMenu::init()
 
 void GameMenu::update()
 {	
-	GInput* input = GInput::getInstance();
-	cursorPosition = D3DXVECTOR2(GameWindow::getInstance()->mouseX, GameWindow::getInstance()->mouseY);
-	if (input->isMouseClick(0)) {
-		if (isButtonCollide(startPosition, buttonSize)) {
-			GameStateManager::getInstance()->currentState = 1;//enter select level
-		}
-		if (isButtonCollide(exitPosition, buttonSize)) {
-			PostQuitMessage(0);
-		}
+	background->update();
+	if (GInput::getInstance()->isKeyDown(DIK_RETURN))
+	{
+		GameStateManager::getInstance()->currentState = 1;
 	}
 }
 
@@ -54,64 +51,38 @@ void GameMenu::fixUpdate()
 
 void GameMenu::draw()
 {
-	//	Clear and begin scene
+	gameMenu->Begin(D3DXSPRITE_ALPHABLEND);
 
-	gamemenu->Begin(D3DXSPRITE_ALPHABLEND);
+	background->drawSprite(&gameMenu);
 
-	//background render
-	//D3DXMatrixTransformation2D(&matrix, NULL, 0.0, &scaling, NULL, 0, &characterPos);
-	//sprite->SetTransform(&matrix);
+	titleFont->DrawText(gameMenu, title->word, -1, &title->position, DT_LEFT, D3DCOLOR_XRGB(0, 0, 0));
+	font->DrawText(gameMenu, enter->word, -1, &enter->position, DT_LEFT, D3DCOLOR_XRGB(0, 0, 0));
+	font->DrawText(gameMenu, esc->word, -1, &esc->position, DT_LEFT, D3DCOLOR_XRGB(0, 0, 0));
 
-	//sprite->Draw(grenade, &grenadeRect, NULL, &player->position, D3DCOLOR_XRGB(255, 255, 255));
-
-	gamemenu->Draw(texture, &backgroundRect, NULL, &drawPosition[1][0], D3DCOLOR_XRGB(255, 255, 255));
-	gamemenu->Draw(texture2, &backgroundRect, NULL, &drawPosition[1][1], D3DCOLOR_XRGB(255, 255, 255));
-	//	Sprite rendering. Study the documentation.
-	//sprite->Draw(texture, NULL, NULL, NULL, D3DCOLOR_XRGB(255, 255, 255));
-
-	//sprite->Draw(texture, &spriteRect, NULL, &drawPosition, D3DCOLOR_XRGB(255, 255, 255));
-
-
-	//	End sprite drawing
-	gamemenu->End();
-
-	//	End and present scene
+	gameMenu->End();
 }
 
 
 void GameMenu::release()
 {
-	gamemenu->Release();
-	gamemenu = NULL;
+	gameMenu->Release();
+	gameMenu = NULL;
 
-	texture->Release();
-	texture2->Release();
+	delete title;
+	title = NULL;
 
-	resource->Release();
-	resource = NULL;
-	texture = NULL;
-	texture2 = NULL;
+	delete enter;
+	enter = NULL;
 
+	delete esc;
+	esc = NULL;
 
-	delete drawPosition;
+	delete background;
+	background = NULL;
+
+	font->Release();
+	font = NULL;
+
 }
 
 
-bool GameMenu::isButtonCollide(D3DXVECTOR2 position, D3DXVECTOR2 size) {
-	/* D3DXVECTOR2 offset = p2 - p1;
-	float l = D3DXVec2Length(&offset);
-	if (l < length) {
-		return true;
-	}
-	return false; */
-
-		buttonRect.left = position.x;
-	buttonRect.right = position.x + size.x;
-	buttonRect.top = position.y;
-	buttonRect.bottom = position.y + size.y;
-	if (cursorPosition.y < buttonRect.top) return false;
-	if (cursorPosition.x < buttonRect.left) return false;
-	if (cursorPosition.x > buttonRect.right) return false;
-	if (cursorPosition.y > buttonRect.bottom) return false;
-	return true;
-}

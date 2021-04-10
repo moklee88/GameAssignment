@@ -148,8 +148,10 @@
     <ClInclude Include="Background.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Coins.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="FrameTimer.h" />
     <ClInclude Include="GameMenu.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameWindow.h" />
@@ -159,19 +161,26 @@
     <ClInclude Include="Bullet.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="HealthBar.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Score.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Spawner.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Coins.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="FrameTimer.cpp" />
     <ClCompile Include="GameMenu.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="GameWindow.cpp" />
     <ClCompile Include="Ginput.cpp" />
@@ -180,13 +189,18 @@
     <ClCompile Include="Bullet.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="HealthBar.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Spawner.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

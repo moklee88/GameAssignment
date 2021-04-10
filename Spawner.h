@@ -3,8 +3,8 @@
 #include <vector>
 
 #include "Character.h"
-#include "Platform.h"
 #include "Coins.h"
+#include "Platform.h"
 
 class Spawner
 {

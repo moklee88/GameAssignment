@@ -58,7 +58,6 @@ void GraphicHandler::draw() {
 	GameStateManager::getInstance()->draw();
 	//GameMenu::getInstance()->drawSprite();
 
-
 	//	End the scene
 	d3dDevice->EndScene();
 

@@ -5,21 +5,18 @@ class Background
 {
 private:
 	LPDIRECT3DTEXTURE9 texture;
-	LPDIRECT3DTEXTURE9 texture2;
-	LPDIRECT3DTEXTURE9 texture3;
-	LPDIRECT3DTEXTURE9 texture4;
 
-	LPD3DXSPRITE **backgroundLoader;
+	int i, j;
+	RECT rect[4];
+	D3DXVECTOR2 size;
 
-	RECT backgroundRect, backgroundRect2;
+	D3DXVECTOR3 drawPosition[2][4];
+	int initialP[2], maxP[4], moveP[4];
 
-	int frame[4], maxFrame[4];
+
 public:
-	D3DXVECTOR3 drawPosition[2][5];
-
 	Background();
 	~Background();
-	
 
 	void update();
 

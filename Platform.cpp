@@ -3,34 +3,16 @@
 
 Platform::~Platform()
 {
-	this->position = { NULL,NULL,NULL };
+	Object::~Object();
 
-	speed = { NULL,NULL,NULL };
-	force = NULL;
-
-	rect.left = NULL;
-	rect.top = NULL;
-	rect.right = NULL;
-	rect.bottom = NULL;
 }
-Platform::Platform(D3DXVECTOR3 position)
+Platform::Platform(D3DXVECTOR3 position, float force, float sizeX, float sizeY, float left, float top) :Object(position, force, sizeX, sizeY, left, top)
 {
-	this->position = position;
-
-	force = -120;
-	speed = { force,0,0 };
-	
-
-	rect.left = 588;
-	rect.top = 0;
-	rect.right = 714;
-	rect.bottom = 11;
 
 }
 
 void Platform::physic()
 {
 	position += speed / 60.0;
-	speed = { force--,0,0 };
 }
 

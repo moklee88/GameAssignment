@@ -32,24 +32,10 @@ Bullet::Bullet(D3DXVECTOR3 position)
 	rect.right = 587;
 	rect.bottom = 18;
 
-	hitbox = { NULL,NULL,NULL,NULL };
 	shoot();
-}
-
-RECT Bullet::getHitbox()
-{
-	hitbox.left = position.x;
-	hitbox.right = position.x + 10;
-	hitbox.top = position.y;
-	hitbox.bottom = position.y + 10;
-
-	return hitbox;
-}
-
+}	
 void Bullet::shoot()
 {
-	//direction = GInput::getInstance()->getMousePosition() - position;
-
 	speed = direction * force;
 }
 

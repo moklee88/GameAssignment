@@ -6,9 +6,9 @@ class Character
 {
 private:
 	int boundary;
-	int hp;
+	
 	float force;
-
+	int hp;
 public:
 	D3DXVECTOR3 position,speed;
 	D3DXVECTOR2 size;
@@ -22,6 +22,7 @@ public:
 
 	void physic();
 	void stationary();
+	int getBoundary();
 
 	void moveleft();
 	void moveright();
@@ -29,6 +30,7 @@ public:
 
 	void lostHp();
 	int getHp();
+	void resetHp();
 
 	void animation();
 

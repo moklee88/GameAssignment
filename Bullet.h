@@ -6,7 +6,7 @@ class Bullet
 {
 private:
 	float force;
-	RECT hitbox;
+	//RECT hitbox;
 
 public:
 	RECT rect;
@@ -16,7 +16,7 @@ public:
 	Bullet(D3DXVECTOR3 position);
 
 	void shoot();
-	RECT getHitbox();
+	//RECT getHitbox();
 
 	void physic();
 

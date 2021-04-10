@@ -1,4 +1,5 @@
 #include "GameWindow.h"
+#include "GameStateManager.h"
 //#include "resource.h"
 #include <stdio.h>
 
@@ -18,6 +19,7 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM 
 		if (wParam == VK_ESCAPE) {
 			PostQuitMessage(0);
 		}
+
 		printf("%d\n", wParam);
 		break;
 	case WM_MOUSEMOVE:
@@ -33,6 +35,8 @@ LRESULT CALLBACK WindowProcedure(HWND hWnd, UINT message, WPARAM wParam, LPARAM 
 	}
 	return 0;
 }
+
+
 
 GameWindow* GameWindow::getInstance() {
 	if (sInstance == NULL)
@@ -76,7 +80,7 @@ int GameWindow::createWindow() {
 
 	wndClass.hInstance = hInstance; //GetModuleHandle(NULL);
 	wndClass.lpfnWndProc = WindowProcedure;
-	wndClass.lpszClassName = "My Window";
+	wndClass.lpszClassName = "MadRun";
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;
 	//wndClass.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
 
@@ -88,7 +92,7 @@ int GameWindow::createWindow() {
 		Create the Window.
 	*/
 	//	You are to refer to MSDN for each of the parameters details.
-	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "My Window's Name", WS_OVERLAPPEDWINDOW, 300, 300, 550, 550, NULL, NULL, hInstance, NULL);
+	g_hWnd = CreateWindowEx(0, wndClass.lpszClassName, "MadRun", WS_OVERLAPPEDWINDOW, 500, 200, 550, 550, NULL, NULL, hInstance, NULL);
 	ShowWindow(g_hWnd, 1);
 
 	return 0;
