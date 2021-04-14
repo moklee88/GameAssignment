@@ -10,7 +10,6 @@
 #include "Background.h"
 #include "UI.h"
 
-
 class Scene :public GameState
 {
 private:
