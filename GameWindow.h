@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include "GraphicHandler.h"
 #include "GInput.h"
-#include<d3d9.h>
+#include <d3d9.h>
 
 
 class GameWindow

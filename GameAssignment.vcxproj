@@ -155,7 +155,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
     <ClInclude Include="GameWindow.h" />
-    <ClInclude Include="Ginput.h" />
+    <ClInclude Include="GInput.h" />
     <ClInclude Include="GraphicHandler.h" />
     <ClInclude Include="Grenade.h" />
     <ClInclude Include="Bullet.h">
@@ -183,7 +183,7 @@
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
     <ClCompile Include="GameWindow.cpp" />
-    <ClCompile Include="Ginput.cpp" />
+    <ClCompile Include="GInput.cpp" />
     <ClCompile Include="GraphicHandler.cpp" />
     <ClCompile Include="Grenade.cpp" />
     <ClCompile Include="Bullet.cpp">
