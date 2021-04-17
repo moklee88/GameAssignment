@@ -9,12 +9,12 @@ Coins::Coins(D3DXVECTOR3 position, float force, float sizeX, float sizeY, float 
 Coins::Coins()
 {
 	animationFrame = 0;
-	Object::~Object();
 }
 
 Coins::~Coins()
 {
 	animationFrame = NULL;
+	Object::~Object();
 }
 
 void Coins::physic()

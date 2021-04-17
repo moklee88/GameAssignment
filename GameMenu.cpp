@@ -39,7 +39,7 @@ void GameMenu::init()
 
 void GameMenu::update()
 {	
-
+	background->update();
 	if (GInput::getInstance()->isKeyDown(DIK_RETURN))
 	{
 		GameStateManager::getInstance()->currentState = 1;
@@ -48,7 +48,7 @@ void GameMenu::update()
 
 void GameMenu::fixUpdate()
 {
-	background->update();
+	
 }
 
 void GameMenu::draw()

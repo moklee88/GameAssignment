@@ -5,6 +5,7 @@
 #include "Ginput.h"
 #include "Spawner.h"
 #include "Object.h"
+#include "Particle.h"
 #include "Gun.h"
 #include "GameState.h"
 #include "Background.h"
@@ -15,6 +16,7 @@ class Scene :public GameState
 private:
 	int score;
 
+	Particle* particle;
 	Character* player;
 	Spawner* spawner;
 	Bullet* bullet;

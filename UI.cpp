@@ -11,10 +11,6 @@ UI::UI()
 	hpRect.right = 26;
 	hpRect.bottom = 250;
 
-	//rectScoreStr.top = 410;
-	//rectScoreStr.left = 10;
-	//rectScoreStr.right = 70;
-	//rectScoreStr.bottom = 300;
 
 	scoreStr = new Font("Score: ", 10, 410, 110, 60);
 

@@ -8,6 +8,8 @@ Scene::Scene()
 {
 	score = 0;
 
+	particle = new Particle();
+
 	gunActual = { 0,0,0 };
 	grenade = NULL;
 	player = new Character(3, 10, 200);
@@ -102,6 +104,9 @@ void Scene::release()
 	}
 
 	score = NULL;
+
+	delete particle;
+	particle = NULL;
 }
 
 void Scene::init()
@@ -112,7 +117,7 @@ void Scene::init()
 void Scene::fixUpdate()
 {
 
-	background->update();
+	
 	player->animation();
 
 	for (int i = 0; i < spawnList.size(); i++)
@@ -128,6 +133,8 @@ void Scene::fixUpdate()
 
 void Scene::update()
 {
+	background->update();
+	particle->particleMovement();
 	//Mouse
 	mousePosition = GInput::getInstance()->getMousePosition() - (26, 26, 0);
 
@@ -195,6 +202,7 @@ void Scene::update()
 		{
 			if (isCollide(spawnList[i]->position, grenade->position, 100))
 			{
+				particle->particleSpawn(spawnList[i]->position);
 				spawnList.erase(spawnList.begin() + i);
 				score += 10;
 			}
@@ -236,6 +244,7 @@ void Scene::update()
 					score = 0;
 				}
 			}
+			
 			spawnList.erase(spawnList.begin() + i);
 			break;
 		}
@@ -253,6 +262,7 @@ void Scene::update()
 			}
 			else if (isCollide(spawnList[i]->position, bullet->position, 10))
 			{
+				particle->particleSpawn(spawnList[i]->position);
 				spawnList.erase(spawnList.begin() + i);
 				score += 10;
 			}
@@ -267,6 +277,7 @@ void Scene::draw()
 
 	background->drawSprite(&sprite);
 
+	particle->draw(&sprite, &resource);
 	//Coins
 	for (int i = 0; i < coinList.size(); i++)
 		sprite->Draw(resource, &coinList[i]->rect, NULL, &coinList[i]->position, D3DCOLOR_XRGB(255, 255, 255));

@@ -47,11 +47,12 @@ void GameOver::update()
 	{
 		GameStateManager::getInstance()->currentState = 0;
 	}
+	background->update();
 }
 
 void GameOver::fixUpdate()
 {
-	background->update();
+	
 }
 
 void GameOver::draw()
